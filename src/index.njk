@@ -7,9 +7,9 @@ eleventyImport:
 <section class="home-list wrap" aria-labelledby="latest-title">
   <h1 class="sr-only" id="latest-title">Artikler</h1>
   {% if collections.articles.length %}
-    <div class="listing">
+    <div class="compact-list">
       {% for article in collections.articles | limit(7) %}
-        {% include "components/article-card.njk" %}
+        {% include "components/compact-article.njk" %}
       {% endfor %}
     </div>
   {% else %}

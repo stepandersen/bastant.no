@@ -1,0 +1,13 @@
+{% if article.data.review %}{% set sharedSource = article.data.review | sourceDetails %}{% endif %}
+<article class="compact-article">
+  <div class="compact-article__meta">
+    {% if article.data.review %}
+      <span><strong>{{ article.data.review | sourceName }}</strong><span aria-hidden="true"> / </span>{{ sharedSource.type.name }}</span>
+    {% endif %}
+    <time datetime="{{ article.date | htmlDate }}">{{ article.date | readableDate }}</time>
+  </div>
+  <div class="compact-article__body">
+    <h2><a href="{{ article.url }}">{{ article.data.title }} <span aria-hidden="true">→</span></a></h2>
+    {% if article.data.summary %}<p>{{ article.data.summary }}</p>{% endif %}
+  </div>
+</article>
