@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+title: Emner
+summary: Finn artikler etter emne.
+eleventyImport:
+  collections: [articles, topicList]
+---
+<header class="page-header wrap"><p class="eyebrow">Naviger</p><h1>Emner</h1><p>Finn gjennomganger, dokumentasjon og bakgrunnsstoff etter tema.</p></header>
+<section class="topic-index wrap">
+  {% for topic in collections.topicList %}
+    {% set topicArticles = collections.articles | articlesForTopic(topic) %}
+    <a href="{{ topic | topicUrl }}"><span>{{ topic }}</span><strong>{{ topicArticles.length }}</strong></a>
+  {% endfor %}
+</section>

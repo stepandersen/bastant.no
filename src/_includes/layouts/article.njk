@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+---
+<article class="article wrap">
+  <header class="article-header">
+    {% if review %}<p class="eyebrow">{{ review | sourceName }}</p>{% endif %}
+    <h1>{{ title }}</h1>
+    {% if summary %}<p class="article-deck">{{ summary }}</p>{% endif %}
+    <div class="article-meta">
+      <span>Publisert <time datetime="{{ date | htmlDate }}">{{ date | readableDate }}</time></span>
+      {% if updated %}<span>Oppdatert <time datetime="{{ updated | htmlDate }}">{{ updated | readableDate }}</time></span>{% endif %}
+      {% if topics and topics.length %}
+        <span class="topic-links">{% for topic in topics %}<a href="{{ topic | topicUrl }}">{{ topic }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if review %}
+    {% include "components/reviewed-source.njk" %}
+    <p class="reading-note">Denne gjennomgangen er et supplement til originalartikkelen. Vi anbefaler at du leser den først.</p>
+  {% endif %}
+
+  <div class="article-content{% if sources and sources.length %} article-content--with-sources{% endif %}">
+    <div class="article-body prose">{{ content | safe }}</div>
+    {% if sources and sources.length %}{% include "components/sources.njk" %}{% endif %}
+  </div>
+
+  {% if corrections and corrections.length %}
+    <section class="corrections" aria-labelledby="corrections-title">
+      <h2 id="corrections-title">Rettelser og oppdateringer</h2>
+      <ul>{% for correction in corrections %}<li><time datetime="{{ correction.date | htmlDate }}">{{ correction.date | readableDate }}</time>: {{ correction.text }}</li>{% endfor %}</ul>
+    </section>
+  {% endif %}
+
+  <footer class="article-footer">
+    <p>Finner du en feil eller en kilde vi bør kjenne til?</p>
+        <a href="/om/#kontakt">Meld fra om feil</a>
+  </footer>
+</article>

@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+title: Kilderegister
+summary: Gyldige publikasjoner og artikkeltyper som kan brukes i metadata for Bastants artikler.
+permalink: /kilder/index.html
+---
+<header class="page-header wrap">
+  <p class="eyebrow">Felles metadata</p>
+  <h1>Kilderegister</h1>
+  <p>Denne siden viser gyldige verdier for <code>review.source</code> og <code>review.type</code>. Registeret genereres direkte fra dataene nettstedet bruker.</p>
+</header>
+
+<section class="source-registry wrap" aria-label="Registrerte publikasjoner og artikkeltyper">
+  {% for sourceKey, source in sourceTypes %}
+    <article class="source-registry__source">
+      <header>
+        <div>
+          <p class="section-kicker">Publikasjon</p>
+          <h2>{{ source.name }}</h2>
+        </div>
+        <code>source: {{ sourceKey }}</code>
+      </header>
+      <p class="source-registry__site">{{ source.site }}</p>
+      <p>{{ source.description }}</p>
+
+      <div class="source-registry__types">
+        <h3>Artikkeltyper</h3>
+        {% for typeKey, type in source.types %}
+          <section>
+            <div>
+              <h4>{{ type.name }}</h4>
+              <code>type: {{ typeKey }}</code>
+            </div>
+            <p>{{ type.description }}</p>
+          </section>
+        {% endfor %}
+      </div>
+    </article>
+  {% endfor %}
+</section>

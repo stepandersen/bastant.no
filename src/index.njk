@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+title: Forsiden
+eleventyImport:
+  collections: [articles]
+---
+<section class="home-list wrap" aria-labelledby="latest-title">
+  <h1 class="sr-only" id="latest-title">Artikler</h1>
+  {% if collections.articles.length %}
+    <div class="listing">
+      {% for article in collections.articles | limit(7) %}
+        {% include "components/article-card.njk" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-state">Ingen artikler er publisert ennå.</p>
+  {% endif %}
+</section>

@@ -1,0 +1,6 @@
+<article class="article-card">
+  <p class="article-card__meta">{% if article.data.review %}<span>{{ article.data.review | sourceName }}</span> · {% endif %}<time datetime="{{ article.date | htmlDate }}">{{ article.date | readableDate }}</time></p>
+  <h2><a href="{{ article.url }}">{{ article.data.title }}</a></h2>
+  {% if article.data.summary %}<p>{{ article.data.summary }}</p>{% endif %}
+  {% if article.data.review %}{% set sharedSource = article.data.review | sourceDetails %}<p class="article-card__source">{{ sharedSource.type.name }}</p>{% endif %}
+</article>

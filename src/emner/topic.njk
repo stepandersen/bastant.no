@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.topicList
+  size: 1
+  alias: topic
+permalink: "/emner/{{ topic | slugify }}/index.html"
+eleventyComputed:
+  title: "Emne: {{ topic }}"
+  summary: "Artikler om {{ topic }} fra Bastant."
+eleventyImport:
+  collections: [articles, topicList]
+---
+<header class="page-header wrap"><p class="eyebrow">Emne</p><h1>{{ topic }}</h1><p>Alle publiserte artikler merket med {{ topic }}.</p></header>
+<section class="listing wrap">
+  {% set topicArticles = collections.articles | articlesForTopic(topic) %}
+  {% for article in topicArticles %}{% include "components/article-card.njk" %}{% endfor %}
+</section>

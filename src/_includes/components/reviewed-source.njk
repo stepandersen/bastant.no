@@ -1,0 +1,22 @@
+{% set sharedSource = review | sourceDetails %}
+<aside class="reviewed-source" aria-labelledby="review-source-title">
+  <p class="reviewed-source__label" id="review-source-title">Artikkelen som gjennomgås</p>
+  <h2>{{ sharedSource.name }}: «{{ review.title }}»</h2>
+  <p class="reviewed-source__kind"><strong>{{ sharedSource.site }}</strong> · {{ sharedSource.type.name }}</p>
+  <div class="reviewed-source__descriptions">
+    <div>
+      <h3>Om {{ sharedSource.site }}</h3>
+      <p>{{ sharedSource.description }}</p>
+    </div>
+    <div>
+      <h3>Om typen «{{ sharedSource.type.name }}»</h3>
+      <p>{{ sharedSource.type.description }}</p>
+    </div>
+  </div>
+  <dl>
+    {% if review.published %}<div><dt>Publisert</dt><dd>{{ review.published | readableDate }}</dd></div>{% endif %}
+    {% if review.updated %}<div><dt>Oppdatert</dt><dd>{{ review.updated | readableDate }}</dd></div>{% endif %}
+    {% if review.accessed %}<div><dt>Kontrollert</dt><dd>{{ review.accessed | readableDate }}</dd></div>{% endif %}
+  </dl>
+  <a class="source-link" href="{{ review.url }}">Les originalartikkelen hos {{ sharedSource.name }} <span aria-hidden="true">↗</span></a>
+</aside>

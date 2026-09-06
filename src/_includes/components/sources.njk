@@ -1,0 +1,14 @@
+<aside class="sources" aria-labelledby="sources-title">
+  <p class="section-kicker">Dokumentasjon</p>
+  <h2 id="sources-title">Kilder</h2>
+  <ol>
+    {% for source in sources %}
+      <li id="kilde-{{ loop.index }}">
+        <a href="{{ source.url }}">{{ source.title }}</a>
+        <span>{{ source.publisher }}{% if source.published %}, {{ source.published | readableDate }}{% endif %}.</span>
+        {% if source.accessed %}<span>Hentet {{ source.accessed | readableDate }}.</span>{% endif %}
+        {% if source.note %}<span>{{ source.note }}</span>{% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</aside>

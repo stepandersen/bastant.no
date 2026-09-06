@@ -1,0 +1,25 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+eleventyImport:
+  collections: [articles]
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.name | escape }}</title>
+  <subtitle>{{ site.description | escape }}</subtitle>
+  <link href="{{ '/feed.xml' | url | absoluteUrl(site.url) }}" rel="self"/>
+  <link href="{{ '/' | url | absoluteUrl(site.url) }}"/>
+  <id>{{ site.url }}/</id>
+  <updated>{{ collections.articles[0].date | dateToRfc3339 }}</updated>
+  {% for article in collections.articles | limit(20) %}
+  <entry>
+    <title>{{ article.data.title | escape }}</title>
+    <link href="{{ article.url | url | absoluteUrl(site.url) }}"/>
+    <id>{{ article.url | url | absoluteUrl(site.url) }}</id>
+    <published>{{ article.date | dateToRfc3339 }}</published>
+    <updated>{{ (article.data.updated or article.date) | dateToRfc3339 }}</updated>
+    <summary>{{ article.data.summary | escape }}</summary>
+  </entry>
+  {% endfor %}
+</feed>
