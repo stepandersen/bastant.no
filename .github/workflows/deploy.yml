@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
       - name: Sett opp GitHub Pages
         id: pages
         uses: actions/configure-pages@v5
