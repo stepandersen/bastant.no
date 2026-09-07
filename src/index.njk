@@ -6,6 +6,10 @@ eleventyImport:
 ---
 <section class="home-list wrap" aria-labelledby="latest-title">
   <h1 class="sr-only" id="latest-title">Artikler</h1>
+  <aside class="development-notice" aria-label="Utviklingsstatus">
+    <strong>Konsept under utvikling</strong>
+    <p>Bastant er under utvikling. Innhold, metode og utforming kan bli endret.</p>
+  </aside>
   {% if collections.articles.length %}
     <div class="compact-list">
       {% for article in collections.articles | limit(7) %}
