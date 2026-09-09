@@ -91,6 +91,10 @@ Regler for metadata:
 * `sourceType` beskriver kildens rolle i dokumentasjonen, ikke hvor troverdig den er.
 * `note` skal forklare konkret hvilken opplysning kilden støtter.
 
+## Kobling mellom innlegg og tilsvar
+
+Når originalinnlegget er et tilsvar til et innlegg Bastant allerede har gjennomgått, legg til `respondsTo: filnavn-uten-md` i front matter. Verdien viser til filnavnet på Bastants gjennomgang av innlegget det svares på. Registrer bare koblingen på gjennomgangen av tilsvaret; nettstedet lager lenker i begge retninger automatisk når begge er publisert. Flere tilsvar kan peke til samme gjennomgang. Behold `status: draft` som normalt.
+
 ## Kildehenvisninger i artikkelen
 
 For hver faktisk påstand som Bastant tilfører:

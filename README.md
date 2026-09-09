@@ -30,6 +30,16 @@ Registeret publiseres automatisk på `/kilder/`, slik at eksterne skribenter og 
 
 Filnavnet blir artikkelens URL. Bruk små ASCII-bokstaver og bindestrek, for eksempel `nrk-og-vaermeldingen.md`.
 
+## Koble sammen innlegg og tilsvar
+
+Sett `respondsTo` i front matter på gjennomgangen av tilsvaret. Verdien er filnavnet til gjennomgangen av det opprinnelige innlegget, uten `.md`:
+
+```yaml
+respondsTo: skogbranner-klimarisiko-og-pastanden-om-klimafornektelse
+```
+
+Nettstedet viser automatisk lenker nederst i begge artiklene med en forklaring av hvilken vei tilsvaret går. Registrer koblingen bare på tilsvaret. Flere tilsvar kan peke til samme artikkel. Titler og nettadresser hentes automatisk. Bare publiserte gjennomganger vises; lenker til utkast skjules. Bygget avviser ukjente filnavn og koblinger til artikkelen selv for publiserte artikler.
+
 ## Nettadresse
 
 Sett miljøvariabelen `SITE_URL` til den offentlige adressen i GitHub Actions. Standardverdien `https://example.com` er bare for lokale bygg og må erstattes før lansering.

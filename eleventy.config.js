@@ -1,6 +1,8 @@
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { DateTime } from "luxon";
 import sourceTypes from "./src/_data/sourceTypes.js";
+import { relatedArticles } from "./lib/article-relations.js";
+import { existsSync } from "node:fs";
 
 const STATUS_LABELS = {
   documented: "Godt dokumentert",
@@ -13,6 +15,7 @@ const STATUS_LABELS = {
 
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addFilter("relatedArticles", relatedArticles);
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
   eleventyConfig.addWatchTarget("src/assets");
@@ -71,6 +74,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("articles", (collectionApi) => {
     const allArticles = collectionApi.getFilteredByGlob("src/articles/*.md");
     for (const article of allArticles) {
+      const target = article.data.respondsTo;
+      if (target !== undefined && (typeof target !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(target) || target === article.fileSlug || !existsSync(`src/articles/${target}.md`))) {
+        throw new Error(`${article.inputPath}: respondsTo må vise til filnavnet på en annen eksisterende artikkel, uten .md.`);
+      }
       const review = article.data.review;
       if (!review) continue;
       const source = sourceTypes[review.source];

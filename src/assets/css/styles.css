@@ -172,6 +172,12 @@ img { max-width: 100%; height: auto; }
 .corrections { background: var(--surface); padding: 1.5rem; border-top-color: var(--accent); }
 .article-footer { max-width: var(--measure); display: flex; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-weight: 750; }
 .article-footer p { margin: 0; }
+.related-articles { max-width: var(--measure); margin-top: 4rem; padding: 1.5rem; background: var(--surface); border-top: .3rem solid var(--accent); }
+.related-articles h2 { margin: 0 0 1rem; font-size: 1.5rem; line-height: 1.2; }
+.related-articles ul { list-style: none; padding: 0; margin: 0; }
+.related-articles li + li { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.related-articles p { margin: 0 0 .75rem; color: var(--muted); font: 1.05rem/1.5 var(--serif); }
+.related-articles a { font-weight: 750; overflow-wrap: anywhere; }
 
 .site-footer { padding-block: 4rem; border-top: 1px solid var(--line); }
 .site-footer__grid { display: flex; justify-content: space-between; gap: 3rem; }

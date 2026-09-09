@@ -1,0 +1,14 @@
+{% set related = collections.articles | relatedArticles(page.fileSlug) %}
+{% if related.length %}
+  <nav class="related-articles" aria-labelledby="related-articles-title">
+    <h2 id="related-articles-title">Les også etterprøvingen av den andre siden</h2>
+    <ul>
+      {% for item in related %}
+        <li>
+          <p>{{ item.description }}</p>
+          <a href="{{ item.url }}">{{ item.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}
