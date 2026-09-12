@@ -25,18 +25,18 @@ sources:
 
 Innled kort med hva som er undersøkt og hvilke avgrensninger som er gjort.
 
-## Den konkrete opplysningen
+## Dette fant vi
 
-Gjengi eller beskriv opplysningen presist og med nødvendig attribusjon.
+Oppsummer de viktigste resultatene og eventuell avgjørende usikkerhet i to–tre setninger.
 
-{% observation "context", "Kort og beskrivende mellomtittel" %}
-Forklar vurderingen og legg en [kildehenvisning](#kilde-1) nær opplysningen den støtter.
-{% endobservation %}
+{% claim "context", "Den konkrete påstanden", "Kort svar med nødvendige forbehold." %}
+Gjengi eller beskriv originalens opplysning presist og med nødvendig attribusjon.
+
+Forklar vurderingen kort og legg en [kilde 1](https://...) nær opplysningen den støtter. Skill dokumenterte fakta fra egne slutninger og usikkerhet.
+{% endclaim %}
+
+## Bakgrunn
 
 {% background "Hva er …?" %}
 En kort, nøytral forklaring av et begrep eller en organisasjon som er relevant for saken.
 {% endbackground %}
-
-## Konklusjon
-
-Oppsummer hva dokumentasjonen viser, hva den ikke viser, og eventuell usikkerhet.

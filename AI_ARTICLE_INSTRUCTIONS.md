@@ -1,6 +1,6 @@
 # Instruks for å skrive artikler til Bastant
 
-Bruk denne instruksen når du ber en AI-assistent om å undersøke, utarbeide eller redigere en artikkel til Bastant. Resultatet skal være én komplett Markdown-fil som kan lagres direkte i `src/articles/`.
+Bruk denne instruksen når du ber en AI-assistent om å undersøke, utarbeide eller redigere en artikkel til Bastant. Arbeidet skjer gjennom en undersøkelsesplan og et artikkelutkast med innspill fra brukeren før sluttleveransen: én komplett Markdown-fil som kan lagres direkte i `src/articles/`.
 
 ## Oppdrag og redaksjonelt formål
 
@@ -37,7 +37,38 @@ Ikke dikt opp manglende metadata, sitater, datoer, statistikk, dokumentasjon ell
 
 Hvis nødvendig informasjon ikke kan kontrolleres, skal du tydelig angi hva som mangler før du produserer artikkelen.
 
-Når brukeren sender en lenke til en nyhetsartikkel uten ytterligere instruksjoner i Bastant-prosjektet, skal dette normalt tolkes som en bestilling på en komplett Bastant-artikkel etter denne instruksen. Gjennomfør nødvendig research og lever artikkelutkastet uten å be brukeren om å presisere oppdraget.
+Når brukeren sender en lenke til en nyhetsartikkel uten ytterligere instruksjoner i Bastant-prosjektet, start med undersøkelsesplanen nedenfor. Ikke be brukeren om å gjenta oppdraget. Følg uttrykkelige instrukser om å hoppe over et stopp eller bruke prioriteringer som allerede er gitt.
+
+## Arbeidsflyt og innspill
+
+### 1. Undersøkelsesplan
+
+Les hele originalartikkelen og gjør begrenset innledende research for å identifisere vesentlige, etterprøvbare påstander, premisser og mulig manglende kontekst. Full research og artikkelskriving kommer etter brukerens prioritering.
+
+Presenter en kort, nummerert plan. Oppgi for hvert punkt:
+
+* hva artikkelen faktisk sier, med plassering og et kort sitat eller en tydelig merket parafrase;
+* hvorfor punktet har betydning for leserens forståelse;
+* hva som konkret kan etterprøves, og hvilken dokumentasjon som bør undersøkes;
+* anbefalt prioritet i researchen og foreslått vekt i artikkelen, med en kort begrunnelse.
+
+Skill mellom researchinnsats og plass i den ferdige teksten. Et sentralt premiss kan kreve mye undersøkelse, men lite omtale dersom det bekreftes. Foreløpige spørsmål og mulige innvendinger skal ikke presenteres som funn.
+
+Be brukeren velge prioritering, vekting og eventuelle tillegg, og vent på innspill før full research og artikkelutkast. Brukeren skal kunne svare med punktnumre og korte føringer. Prioriteringene styrer omfanget; dokumentasjonen styrer konklusjonen. Vesentlige funn som svekker den valgte vinklingen skal fortsatt tas med.
+
+### 2. Artikkelutkast og forslag til bakgrunnsbokser
+
+Gjennomfør research etter prioriteringene og lever et sammenhengende artikkelutkast. Nødvendige forklaringer og avgjørende kontekst skal allerede finnes i utkastet.
+
+Bruk synlige minikonklusjoner med lukket utdyping etter formatet nedenfor. Foreslå vurderingsetikett, rekkefølge og eventuell markering av sentrale funn i utkastet, slik at brukeren kan gi innspill til skjønnet før ferdigstilling.
+
+Etter utkastet, tydelig atskilt fra artikkelteksten, foreslå relevante bakgrunnsbokser. Oppgi tittel, kort innholdsbeskrivelse, konkret lesernytte for hver boks. Boksene skal samles nederst etter alle vurderingene. Skill mellom nødvendig forklaring som allerede er med i utkastet, og valgfri fordypning. Ikke foreslå bokser bare for å fylle en mal; opplys kort dersom ingen er nyttige.
+
+Be brukeren velge, endre eller avvise forslagene og gi eventuelle innspill til utkastet. Vent på innspill før sluttleveransen, med mindre brukeren allerede har bedt om å gå direkte til ferdig fil.
+
+### 3. Ferdig Markdown
+
+Innarbeid innspillene og gjennomfør eventuell supplerende research. Lever hele artikkelen på nytt med ferdige bakgrunnsbokser, oppdaterte metadata og kilder, og sammenhengende kildenummerering. Sluttleveransen skal kunne kopieres til Codex for innlegging uten å sette sammen deler fra tidligere svar.
 
 ## Research og verifikasjon
 
@@ -80,6 +111,8 @@ sources:
 Regler for metadata:
 
 * Bruk datoformatet `ÅÅÅÅ-MM-DD`.
+* `review.url` og hver `sources[].url` skal være én ren, absolutt HTTP- eller HTTPS-adresse som en sitert YAML-streng, for eksempel `url: "https://example.org/rapport"`. Ikke bruk Markdown-lenker som `url: "[Rapport](https://example.org/rapport)"`, HTML, vinkelparenteser eller AI-verktøyets siteringsmarkører i feltet. Nettstedet bruker verdien direkte som lenkemål.
+* Metadata skal være vanlige YAML-verdier uten Markdown-formatering eller verktøyspesifikke siteringsmarkører. Bruk mellomrom til innrykk og korrekt escaping av anførselstegn i siterte strenger. Gyldig YAML er ikke nok: feltene må også følge Bastants struktur og forventede verdier.
 * Bruk alltid `status: draft` i AI-genererte utkast. Et menneske endrer til `published` etter kontroll.
 * `title` er Bastants tittel; `review.title` er den opprinnelige artikkelens nøyaktige tittel.
 * `date` er Bastants publiseringsdato; `review.published` er originalartikkelens publiseringsdato.
@@ -107,7 +140,7 @@ For hver faktisk påstand som Bastant tilfører:
 
 Kildene nummereres i samme rekkefølge som i `sources`.
 
-Lenk til dem fra teksten med `[kilde 1](#kilde-1)`, `[kilde 2](#kilde-2)` og så videre.
+Lenk direkte til originalkildens URL fra teksten med `[kilde 1](https://...)`, `[kilde 2](https://...)` og så videre. Nummeret skal samsvare med kildelisten, men lenken skal ikke gå til et internt anker i kildelisten.
 
 Ikke legg en kilde i `sources` dersom den ikke brukes i teksten.
 
@@ -133,23 +166,67 @@ Sammenligningen skal inngå som en egen seksjon i artikkelen når den er relevan
 
 ## Artikkelstruktur
 
+Vurder i hver gjennomgang om sammenligning med Vær Varsom-plakaten eller mediets egne publiserte redaksjonelle krav tilfører noe konkret. Ta bare vurderingen med når den belyser en bestemt, dokumentert problemstilling. Plasser den ved det relevante funnet eller i en egen seksjon når omfanget tilsier det. Ikke legg inn en fast etikkseksjon eller en standardmelding om at ingen problemer ble funnet. Følg metoden i `AI_RESEARCH_INSTRUCTIONS.md`.
+
 Strukturen skal følge funnene i researchen fremfor å presse alle gjennomganger inn i samme mal.
 
 Bruk normalt denne rekkefølgen:
 
 1. En kort innledning som sier hva gjennomgangen undersøker og avgrenser.
-2. Ett avsnitt eller én seksjon for hver vesentlig opplysning eller problemstilling som vurderes.
-3. Eventuelle bakgrunnsbokser med nødvendig, nøytral begrepsinformasjon.
-4. En sammenligning med norske regler når artikkelen omfattes av regelen ovenfor
-5. En konklusjon som oppsummerer hva dokumentasjonen viser, ikke viser og fortsatt lar stå uavklart.
+2. «Dette fant vi»: to–tre setninger om de viktigste resultatene, med avgjørende usikkerhet og kildehenvisninger.
+3. En påstandsblokk per vesentlig opplysning, med synlig minikonklusjon og utdyping som er lukket fra start.
+4. Eventuelle bakgrunnsbokser samlet nederst etter alle vurderingene, under «Bakgrunn». En sammenligning med norske regler når relevant, gjerne som en tydelig seksjon i den aktuelle påstandens utdyping.
+
+Unngå en avsluttende konklusjon som gjentar «Dette fant vi» og minikonklusjonene. Ta bare med en avslutning dersom den tilfører en nødvendig samlet vurdering.
 
 Prioriter de viktigste funnene. Ikke gjør artikkelen lengre bare for å gjengi hele researchprosessen.
 
 Ikke legg inn en egen kildeliste i brødteksten. Nettstedet lager kilde-asiden automatisk fra `sources`.
 
+### Påstandsblokker
+
+Bruk dette formatet for nye artikler:
+
+```njk
+{% claim "context", "Den konkrete påstanden", "Kort svar med nødvendige forbehold." %}
+Gjengi originalens formulering med tydelig attribusjon. Forklar hva dokumentasjonen viser, med [kilde 1](https://...), og skill fakta fra slutninger og usikkerhet.
+{% endclaim %}
+```
+
+Argumentene er vurderingsnøkkel, tittel og minikonklusjon. De skal være ren tekst uten Markdown eller HTML. Kildehenvisningene til minikonklusjonen skal stå nær den utdypede begrunnelsen inne i blokken. Tittel, etikett og minikonklusjon er alltid synlige; leseren åpner resten selv. Nødvendige forbehold må derfor stå i minikonklusjonen og ikke bare i utdypingen.
+
+Bruk eksisterende vurderinger:
+
+* `documented` – Godt dokumentert: relevant dokumentasjon støtter opplysningen.
+* `context` – Trenger kontekst: opplysningen kan være riktig, men vesentlig sammenheng mangler.
+* `misleading` – Misvisende: fremstillingen gir et inntrykk dokumentasjonen ikke støtter godt; forklar hvilket inntrykk og hvorfor.
+* `unsupported` – Ikke dokumentert: tilstrekkelig støtte ble ikke funnet i tilgjengelige kilder; dette betyr ikke at opplysningen er feil.
+* `incorrect` – Faktafeil: pålitelig dokumentasjon motsier opplysningen klart.
+* `unresolved` – Uavklart: motstridende dokumentasjon eller andre begrensninger gjør at en sikker vurdering ikke er mulig.
+
+Velg den etiketten som best beskriver den presist avgrensede påstanden. Del opp påstander med vesentlig forskjellige vurderinger. Etikettene er ikke en alvorlighetsskala.
+
+Et valgfritt fjerde argument begrunner hvorfor funnet er sentralt:
+
+```njk
+{% claim "documented", "Den konkrete påstanden", "Kort svar.", "Dette premisset bærer artikkelens hovedkonklusjon fordi …" %}
+Dokumentasjon og vurdering med kildehenvisninger.
+{% endclaim %}
+```
+
+Argumentet viser markeringen «Sentralt for hovedbudskapet» og begrunnelsen i utdypingen. Utelat det når betydningen ikke er vesentlig. Vurder om funnet påvirker hovedpremisset eller konklusjonen, om en korrigering ville endre leserens forståelse vesentlig, og om det gjelder overskrift eller ingress fremfor en perifer detalj. Skill betydning fra sikkerhet: også godt dokumenterte og uavklarte premisser kan være sentrale.
+
+Sorter etter betydning for forståelsen, ikke etter kritikkens styrke. Ikke bruk tallkarakterer, alvorlighetsnivåer eller en samlet dom. Eldre `observation`-bokser støttes fortsatt, men nye artikler skal bruke `claim`.
+
+### Kortere tekst
+
+Skriv kort svar først og én hovedforklaring per påstand. Sikt normalt mot én setning i minikonklusjonen og to–fire korte avsnitt i utdypingen; utvid når dokumentasjonen eller nødvendige forbehold krever det. Dette er veiledende, ikke en grense som rettferdiggjør å fjerne vesentlig informasjon.
+
+Fjern gjentakelser mellom innledning, minikonklusjoner og avslutning. Forklar felles bakgrunn ett sted. Ekspandering skal bevare nødvendig dokumentasjon, ikke begrunne unødvendig lange tekster.
+
 ## Bakgrunnsbokser
 
-Bruk en bakgrunnsboks for nødvendig, nøytral informasjon om et begrep, en institusjon, en metode eller en organisasjon:
+Bruk bakgrunnsbokser valgt i dialogen med brukeren til relevant, nøytral informasjon om et begrep, en institusjon, en metode eller en organisasjon. Samle alle boksene nederst i artikkelteksten, etter alle vurderingene, under overskriften «Bakgrunn»:
 
 ```njk
 {% background "Hva er en NGO?" %}
@@ -158,6 +235,8 @@ En kort forklaring med relevante kildehenvisninger.
 ```
 
 Bakgrunnsinformasjonen må være relevant for forståelsen av artikkelen. Ikke bruk bokser til kommentarer eller sidespor.
+
+Kildebelegg faktiske opplysninger i boksene på samme måte som i hovedteksten. Hvis en foreslått boks velges bort, skal nødvendig forklaring og avgjørende kontekst fortsatt finnes i hovedteksten.
 
 ## Språk og presentasjon
 
@@ -178,6 +257,7 @@ Bakgrunnsinformasjonen må være relevant for forståelsen av artikkelen. Ikke b
 Kontroller følgende før Markdown-filen leveres:
 
 * Front matter er gyldig YAML.
+* Alle URL-felt inneholder rene, absolutte adresser uten Markdown, HTML eller siteringsmarkører.
 * Alle obligatoriske metadata er fylt ut med verifiserte verdier.
 * `review.publisher` og `review.source` finnes i det delte registeret, og `review.type` finnes under publisher.
 * Originalartikkelens tittel, datoer og sitater er gjengitt korrekt.
@@ -185,16 +265,21 @@ Kontroller følgende før Markdown-filen leveres:
 * Hver ny faktisk opplysning har relevant dokumentasjon.
 * Kildene støtter formuleringene de er knyttet til.
 * Motstridende relevant dokumentasjon er ikke utelatt.
-* Alle `#kilde-N`-lenker peker til riktig oppføring og nummereringen er sammenhengende.
+* Alle kildelenker peker direkte til originalkildens URL, og kildenummereringen samsvarer med kildelisten.
 * Datoer og tall har riktig tidsperiode, enhet, nevner og sammenligningsgrunnlag.
 * Egne beregninger kan etterprøves fra oppgitte kilder.
 * Fakta, slutninger og usikkerhet er tydelig atskilt.
 * Nyere informasjon er ikke brukt til å feilaktig bedømme hva som var kjent på originalartikkelens publiseringstidspunkt.
 * Konklusjonen går ikke lenger enn dokumentasjonen gir grunnlag for.
+* Eventuelle vurderinger mot redaksjonelle krav tilfører noe konkret, viser til riktig krav og versjon, og skiller Bastants vurdering fra en eventuell PFU-avgjørelse.
+* Brukerens innspill er innarbeidet, og kildehenvisninger i både hovedtekst og bakgrunnsbokser stemmer med den endelige kildelisten.
+* Hver påstandsblokk har en dekkende etikett og en minikonklusjon som kan leses selvstendig, med nødvendige forbehold. Sentrale funn er konkret begrunnet uten å blande betydning og sikkerhet.
 * Artikkelen har `status: draft`.
 
 ## Leveranseformat
 
-Returner bare innholdet i den komplette Markdown-filen, fra første `---` til siste avsnitt.
+Undersøkelsesplanen og artikkelutkastet med boksforslag er dialogleveranser etter arbeidsflyten ovenfor. Kravet om bare filinnhold gjelder først sluttleveransen.
+
+I sluttleveransen returnerer du bare innholdet i den komplette Markdown-filen, fra første `---` til siste avsnitt.
 
 Ikke legg Markdown-filen i en ekstra kodeblokk, og ikke legg til forklaringer før eller etter filinnholdet.

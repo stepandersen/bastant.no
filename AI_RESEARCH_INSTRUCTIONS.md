@@ -6,6 +6,8 @@ Målet er ikke å finne feil i nyhetsartikkelen. Målet er å undersøke vesentl
 
 ### Velg hva som skal undersøkes
 
+Følg arbeidsflyten i `AI_ARTICLE_INSTRUCTIONS.md`: først en undersøkelsesplan basert på hele originalartikkelen og begrenset innledende research, deretter full research etter brukerens innspill. Skill anbefalt researchprioritet fra foreslått plass i artikkelen. Ikke trekk konklusjoner i planen før dokumentasjonen er kontrollert.
+
 Ikke faktasjekk alle detaljer mekanisk. Prioriter opplysninger som er sentrale for artikkelens premiss eller konklusjon.
 
 Undersøk særlig:
@@ -102,6 +104,25 @@ Relevant kontekst kan blant annet være:
 * hendelser eller regelendringer som påvirker den aktuelle tidsserien.
 
 Ikke ta med bakgrunnsinformasjon bare fordi den er interessant. Den skal ha konkret betydning for forståelsen av en opplysning eller et premiss i artikkelen.
+
+### Vurder mediets egne redaksjonelle krav
+
+Vurder relevansen i hver gjennomgang. En synlig vurdering skal bare tas med når den tilfører konkret forståelse av et dokumentert funn. Ikke lag en rutinemessig etikkseksjon eller let etter regelbrudd som et mål i seg selv.
+
+Skill mellom Vær Varsom-plakatens konkrete punkter, mediets egne publiserte redaksjonelle retningslinjer og overordnede ambisjoner eller samfunnsoppdrag. Ikke behandle en generell ambisjon som et konkret krav til hver enkelt artikkel.
+
+Når en vurdering er relevant:
+
+* finn og åpne den offisielle kilden til kravet; kontroller ordlyd, virkeområde og hvilken versjon som gjaldt ved publisering;
+* oppgi det konkrete punktet og dokumenter det som en kilde i artikkelen;
+* knytt kravet til en bestemt formulering, opplysning eller vesentlig utelatelse, og forklar hva researchen faktisk viser;
+* ta hensyn til sjanger, skillet mellom redaksjonens egne opplysninger og attribuerte utsagn, og hva som var kjent ved publisering;
+* undersøk rimelige tolkninger og dokumentasjon som kan tale mot innvendingen;
+* beskriv begrensninger, særlig når redaksjonens arbeidsprosess eller upubliserte dokumentasjon ikke er kjent.
+
+Manglende kontekst er ikke automatisk et presseetisk problem. Fravær av synlig dokumentasjon i en artikkel viser heller ikke i seg selv at redaksjonen unnlot kildekontroll. Forklar hvorfor akkurat dette funnet har betydning for akkurat dette kravet.
+
+Merk egne vurderinger som Bastants vurdering. Ikke presenter dem som en PFU-avgjørelse eller bruk kategoriske bruddkonklusjoner uten tilstrekkelig grunnlag. Dersom en faktisk PFU-avgjørelse omtales, kontroller avgjørelsen hos PFU og gjengi sak, omfang og konklusjon presist. Hvis relevant krav eller historisk versjon ikke kan verifiseres, skal du ikke bygge en sikker konklusjon på det.
 
 ### Kontroller tall og sammenligninger
 

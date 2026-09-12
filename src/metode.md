@@ -27,6 +27,10 @@ En gjennomgang dekker ikke nødvendigvis alt i en NRK-artikkel. Innledningen ska
 
 Merkelappene vurderer innholdet, ikke journalistens hensikt.
 
+I det nye artikkelformatet vises et kort svar for hver påstand. Leseren kan åpne dokumentasjonen og begrunnelsen. Nødvendige forbehold skal fremgå også av det korte svaret.
+
+**Sentralt for hovedbudskapet** markerer at et funn har vesentlig betydning for artikkelens premiss eller konklusjon. Vi begrunner markeringen i utdypingen. Den angir ikke hvor alvorlig en feil er eller hvor sikker vurderingen er; også et godt dokumentert eller uavklart premiss kan være sentralt. Punktene ordnes etter betydning for forståelsen, ikke etter hvor kritiske de er.
+
 ## Kilder
 
 Vi foretrekker primærkilder når de finnes, men vurderer også deres metode, aktualitet og interesser. Vesentlige fakta skal ha en kilde nær påstanden og fullstendige opplysninger i kildelisten. Datoen en nettside ble kontrollert oppgis når innholdet kan endres.

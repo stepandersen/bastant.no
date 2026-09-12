@@ -15,6 +15,8 @@ Produksjonsbygget lages med `pnpm run build` og skrives til `_site/`.
 
 ## Skrive en artikkel
 
+Tidligere artikler er flyttet til `archived/articles/`. Mappen ligger utenfor Eleventys innholdsmappe (`src/`), og artiklene publiseres derfor ikke som sider eller i lister, emner, RSS og sitemap. Innhold og metadata er bevart som historikk. Nye artikler opprettes i `src/articles/` etter instruksene nedenfor.
+
 Se [AI_ARTICLE_INSTRUCTIONS.md](AI_ARTICLE_INSTRUCTIONS.md) for en komplett instruks som kan gis til en AI-assistent.
 
 1. Kopier `templates/article.md` til `src/articles/et-stabilt-filnavn.md`.

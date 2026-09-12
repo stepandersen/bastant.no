@@ -3,6 +3,7 @@ import { DateTime } from "luxon";
 import { publisherName, reviewDetails } from "./lib/review-metadata.js";
 import { relatedArticles } from "./lib/article-relations.js";
 import { existsSync } from "node:fs";
+import { renderClaim } from "./lib/claim.js";
 
 const STATUS_LABELS = {
   documented: "Godt dokumentert",
@@ -15,6 +16,7 @@ const STATUS_LABELS = {
 
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPairedShortcode("claim", renderClaim);
   eleventyConfig.addFilter("relatedArticles", relatedArticles);
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });

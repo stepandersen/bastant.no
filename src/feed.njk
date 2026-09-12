@@ -11,7 +11,7 @@ eleventyImport:
   <link href="{{ '/feed.xml' | url | absoluteUrl(site.url) }}" rel="self"/>
   <link href="{{ '/' | url | absoluteUrl(site.url) }}"/>
   <id>{{ site.url }}/</id>
-  <updated>{{ collections.articles[0].date | dateToRfc3339 }}</updated>
+  <updated>{{ (collections.articles[0].date or site.buildDate) | dateToRfc3339 }}</updated>
   {% for article in collections.articles | limit(20) %}
   <entry>
     <title>{{ article.data.title | escape }}</title>
