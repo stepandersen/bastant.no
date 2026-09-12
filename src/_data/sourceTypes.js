@@ -370,4 +370,11 @@ const sourceTypes = {
   },
 };
 
-export default sourceTypes;
+const agencies = ["ntb", "reuters", "ap", "afp"];
+const publications = Object.keys(sourceTypes)
+  .filter((key) => key !== "nrk" && !agencies.includes(key))
+  .sort((a, b) => sourceTypes[a].name.localeCompare(sourceTypes[b].name, "nb"));
+
+export default Object.fromEntries(
+  ["nrk", ...publications, ...agencies].map((key) => [key, sourceTypes[key]])
+);

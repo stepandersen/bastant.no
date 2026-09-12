@@ -29,8 +29,10 @@ Innled kort med hva som er undersøkt og hvilke avgrensninger som er gjort.
 
 Oppsummer de viktigste resultatene og eventuell avgjørende usikkerhet i to–tre setninger.
 
-{% claim "context", "Den konkrete påstanden", "Kort svar med nødvendige forbehold." %}
-Gjengi eller beskriv originalens opplysning presist og med nødvendig attribusjon.
+{% claim "context", "Påstanden i originalartikkelen som vurderes", "Kort svar med nødvendige forbehold." %}
+Overskriften skal gjengi påstanden som vurderes, som et presist sitat eller en trofast parafrase, ikke Bastants konklusjon. Bruk anførselstegn bare ved ordrette sitater. Vurderingsmerket gjelder denne påstanden; minikonklusjonen forklarer Bastants vurdering.
+
+Gjengi eller beskriv originalens opplysning presist og med nødvendig attribusjon. Hvis påstanden kommer fra en annen kilde enn originalartikkelen, skal dette fremgå tydelig.
 
 Forklar vurderingen kort og legg en [kilde 1](https://...) nær opplysningen den støtter. Skill dokumenterte fakta fra egne slutninger og usikkerhet.
 {% endclaim %}

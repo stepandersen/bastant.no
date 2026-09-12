@@ -188,12 +188,26 @@ Ikke legg inn en egen kildeliste i brødteksten. Nettstedet lager kilde-asiden a
 Bruk dette formatet for nye artikler:
 
 ```njk
-{% claim "context", "Den konkrete påstanden", "Kort svar med nødvendige forbehold." %}
+{% claim "context", "Påstanden i originalartikkelen som vurderes", "Bastants konklusjon med nødvendige forbehold." %}
 Gjengi originalens formulering med tydelig attribusjon. Forklar hva dokumentasjonen viser, med [kilde 1](https://...), og skill fakta fra slutninger og usikkerhet.
 {% endclaim %}
 ```
 
-Argumentene er vurderingsnøkkel, tittel og minikonklusjon. De skal være ren tekst uten Markdown eller HTML. Kildehenvisningene til minikonklusjonen skal stå nær den utdypede begrunnelsen inne i blokken. Tittel, etikett og minikonklusjon er alltid synlige; leseren åpner resten selv. Nødvendige forbehold må derfor stå i minikonklusjonen og ikke bare i utdypingen.
+De tre obligatoriske argumentene er vurderingsnøkkel (`status`), påstand som tittel (`title`) og Bastants minikonklusjon (`conclusion`). De skal være ren tekst uten Markdown eller HTML.
+
+* `title` skal gjengi den konkrete påstanden i originalartikkelen, som et kort, ordrett sitat eller en trofast parafrase. Bruk anførselstegn bare ved ordrette sitater. Behold nødvendige avgrensninger og attribusjon. Ikke bruk Bastants korrigering eller konklusjon som tittel.
+* `status` vurderer påstanden i `title`, ikke Bastants konklusjon. Hvis blokken undersøker et inntrykk eller en rimelig tolkning av originalteksten, skal dette fremgå tydelig; ikke fremstille tolkningen som en uttrykkelig påstand fra mediet. Hvis påstanden kommer fra en annen kilde, skal kilden fremgå tydelig.
+* `conclusion` skal alltid skrives som et eget tredje argument og gi Bastants korte svar på påstanden, med nødvendige forbehold. Nettstedet viser automatisk «Bastants vurdering:» foran teksten; ikke skriv dette prefikset i argumentet. Konklusjonen skal ikke bare gjenta vurderingsetiketten eller bare finnes i utdypingen.
+
+Eksempel på skillet (illustrerende):
+
+```njk
+{% claim "incorrect", "40 prosent av organisasjonens inntekter kommer fra USA", "40-prosenttallet gjelder mineryddingsarbeidet, ikke organisasjonens samlede inntekter." %}
+Gjengi originalens formulering og dokumenter hvilken nevner tallet gjelder, med kildehenvisninger.
+{% endclaim %}
+```
+
+Kildehenvisningene til minikonklusjonen skal stå nær den utdypede begrunnelsen inne i blokken. Tittel, etikett og minikonklusjon er alltid synlige; leseren åpner resten selv. Nødvendige forbehold må derfor stå i minikonklusjonen og ikke bare i utdypingen.
 
 Bruk eksisterende vurderinger:
 
@@ -209,7 +223,7 @@ Velg den etiketten som best beskriver den presist avgrensede påstanden. Del opp
 Et valgfritt fjerde argument begrunner hvorfor funnet er sentralt:
 
 ```njk
-{% claim "documented", "Den konkrete påstanden", "Kort svar.", "Dette premisset bærer artikkelens hovedkonklusjon fordi …" %}
+{% claim "documented", "Påstanden i originalartikkelen som vurderes", "Bastants konklusjon med nødvendige forbehold.", "Dette premisset bærer artikkelens hovedkonklusjon fordi …" %}
 Dokumentasjon og vurdering med kildehenvisninger.
 {% endclaim %}
 ```
@@ -273,7 +287,8 @@ Kontroller følgende før Markdown-filen leveres:
 * Konklusjonen går ikke lenger enn dokumentasjonen gir grunnlag for.
 * Eventuelle vurderinger mot redaksjonelle krav tilfører noe konkret, viser til riktig krav og versjon, og skiller Bastants vurdering fra en eventuell PFU-avgjørelse.
 * Brukerens innspill er innarbeidet, og kildehenvisninger i både hovedtekst og bakgrunnsbokser stemmer med den endelige kildelisten.
-* Hver påstandsblokk har en dekkende etikett og en minikonklusjon som kan leses selvstendig, med nødvendige forbehold. Sentrale funn er konkret begrunnet uten å blande betydning og sikkerhet.
+* Hver påstandsblokk har originalens påstand som tittel, ikke Bastants korrigering eller konklusjon. Sitater, parafraser og tolkninger er tydelig skilt, med nødvendig attribusjon.
+* Hver påstandsblokk har en etikett som vurderer påstanden i tittelen, og et eget obligatorisk `conclusion`-argument som kan leses selvstendig, med nødvendige forbehold. Sentrale funn er konkret begrunnet uten å blande betydning og sikkerhet.
 * Artikkelen har `status: draft`.
 
 ## Leveranseformat
