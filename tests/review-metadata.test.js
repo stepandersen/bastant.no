@@ -69,7 +69,7 @@ test("en oppføring uten produsentrolle kan ikke brukes som source", () => {
 });
 
 test("kilderegisteret viser bare tillatte metadatafelt for produsenter", () => {
-  const html = env.renderString(readFileSync("src/kilder.njk", "utf8"), { sourceTypes });
+  const html = env.renderString(readFileSync("src/medier.njk", "utf8"), { sourceTypes });
   for (const key of ["ntb", "ap", "reuters", "afp"]) {
     assert.match(html, new RegExp(`source: ${key}</code>`));
     assert.doesNotMatch(html, new RegExp(`publisher: ${key}</code>`));

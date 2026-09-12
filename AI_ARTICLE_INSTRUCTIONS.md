@@ -37,7 +37,7 @@ Ikke dikt opp manglende metadata, sitater, datoer, statistikk, dokumentasjon ell
 
 Hvis nødvendig informasjon ikke kan kontrolleres, skal du tydelig angi hva som mangler før du produserer artikkelen.
 
-Når brukeren sender en lenke til en nyhetsartikkel uten ytterligere instruksjoner i Bastant-prosjektet, start med undersøkelsesplanen nedenfor. Ikke be brukeren om å gjenta oppdraget. Følg uttrykkelige instrukser om å hoppe over et stopp eller bruke prioriteringer som allerede er gitt.
+Når brukeren sender en lenke til en nyhetsartikkel, start med undersøkelsesplanen nedenfor. Tilpass arbeidsflyten til brukerens uttrykkelige instrukser og prioriteringer.
 
 ## Arbeidsflyt og innspill
 
@@ -111,24 +111,25 @@ sources:
 Regler for metadata:
 
 * Bruk datoformatet `ÅÅÅÅ-MM-DD`.
-* `review.url` og hver `sources[].url` skal være én ren, absolutt HTTP- eller HTTPS-adresse som en sitert YAML-streng, for eksempel `url: "https://example.org/rapport"`. Ikke bruk Markdown-lenker som `url: "[Rapport](https://example.org/rapport)"`, HTML, vinkelparenteser eller AI-verktøyets siteringsmarkører i feltet. Nettstedet bruker verdien direkte som lenkemål.
-* Metadata skal være vanlige YAML-verdier uten Markdown-formatering eller verktøyspesifikke siteringsmarkører. Bruk mellomrom til innrykk og korrekt escaping av anførselstegn i siterte strenger. Gyldig YAML er ikke nok: feltene må også følge Bastants struktur og forventede verdier.
+* `review.url` og hver `sources[].url` skal være en absolutt HTTP- eller HTTPS-adresse i en sitert YAML-streng, for eksempel `url: "https://example.org/rapport"`.
+* Skriv metadata som rene YAML-verdier. Bruk mellomrom til innrykk og korrekt escaping av anførselstegn i siterte strenger.
 * Bruk alltid `status: draft` i AI-genererte utkast. Et menneske endrer til `published` etter kontroll.
 * `title` er Bastants tittel; `review.title` er den opprinnelige artikkelens nøyaktige tittel.
 * `date` er Bastants publiseringsdato; `review.published` er originalartikkelens publiseringsdato.
 * Utelat `review.updated` dersom originalkilden ikke oppgir en oppdateringsdato.
 * `review.accessed` er datoen originalartikkelen sist ble kontrollert.
-* `review.publisher` er publiseringsstedet og `review.source` er innholdsprodusenten. Begge er obligatoriske nøkler fra `/kilder/` (generert fra `src/_data/sourceTypes.js`). Bruk samme nøkkel for begge ved egenprodusert innhold. For NTB-innhold hos VG brukes `publisher: vg` og `source: ntb`. Kontroller krediteringen før du angir ekstern produsent.
-* `review.type` er en av publiseringsstedets typer, ikke produsentens. `review.url` skal peke på artikkelen hos publisher. Bruk publisher som hovedavsender i teksten (for eksempel «vg.no skriver»); ekstern source vises i informasjonsboksen. Registerets `roles` må inneholde `publisher` for publiseringsstedet og `producer` for produsenten. NTB, AP, Reuters og AFP er registrert som produsenter og kan ikke brukes som publisher uten at registeret utvides.
-* Hvis publisher, source eller publiseringsstedets type mangler i registeret, skal du foreslå konkret hvilken oppføring som bør legges til i `src/_data/sourceTypes.js` og bruke den foreslåtte oppføringen i artikkelen. Ikke oversett nøklene.
-* `topics` er Bastants emneinndeling, ikke originalartikkelens artikkeltype. Bruk korte, gjenbrukbare emner med små bokstaver.
+* Velg `review.publisher` (publiseringssted) og `review.source` (innholdsprodusent) uavhengig fra `src/_data/sourceTypes.js`, vist på `/medier/`. Oppføringene skal ha henholdsvis rollen `publisher` og `producer`. Ved egenprodusert innhold brukes samme nøkkel i begge felt.
+* Fastslå tekstens produsent ved å kontrollere byline, tekstkreditering og eventuelle forfattermetadata. Dokumenter grunnlaget og avklar uklart eller blandet opphav før publisering.
+* Velg `review.type` blant publiseringsstedets registrerte artikkeltyper. `review.url` skal peke på artikkelen hos publiseringsstedet, som også brukes som hovedavsender i teksten.
+* Hvis en nødvendig oppføring, rolle eller artikkeltype mangler i registeret, foreslå en konkret utvidelse av `src/_data/sourceTypes.js` og bruk de foreslåtte nøklene i artikkelen.
+* `topics` er Bastants emneinndeling. Bruk korte, gjenbrukbare emner med små bokstaver.
 * `sources` inneholder dokumentasjon brukt av Bastant. Originalartikkelen hører bare hjemme under `review` og skal ikke gjentas i `sources`.
 * `sourceType` beskriver kildens rolle i dokumentasjonen, ikke hvor troverdig den er.
 * `note` skal forklare konkret hvilken opplysning kilden støtter.
 
 ## Kobling mellom innlegg og tilsvar
 
-Når originalinnlegget er et tilsvar til et innlegg Bastant allerede har gjennomgått, legg til `respondsTo: filnavn-uten-md` i front matter. Verdien viser til filnavnet på Bastants gjennomgang av innlegget det svares på. Registrer bare koblingen på gjennomgangen av tilsvaret; nettstedet lager lenker i begge retninger automatisk når begge er publisert. Flere tilsvar kan peke til samme gjennomgang. Behold `status: draft` som normalt.
+Når originalinnlegget er et tilsvar til et innlegg Bastant allerede har gjennomgått, legg til `respondsTo: filnavn-uten-md` i front matter. Verdien viser til filnavnet på Bastants gjennomgang av innlegget det svares på. Registrer koblingen på gjennomgangen av tilsvaret; nettstedet lager lenker i begge retninger automatisk når begge er publisert.
 
 ## Kildehenvisninger i artikkelen
 
@@ -140,7 +141,7 @@ For hver faktisk påstand som Bastant tilfører:
 
 Kildene nummereres i samme rekkefølge som i `sources`.
 
-Lenk direkte til originalkildens URL fra teksten med `[kilde 1](https://...)`, `[kilde 2](https://...)` og så videre. Nummeret skal samsvare med kildelisten, men lenken skal ikke gå til et internt anker i kildelisten.
+Lenk direkte til originalkildens URL fra teksten med `[kilde 1](https://...)`, `[kilde 2](https://...)` og så videre. Nummeret skal samsvare med kildelisten.
 
 Ikke legg en kilde i `sources` dersom den ikke brukes i teksten.
 
@@ -185,7 +186,7 @@ Ikke legg inn en egen kildeliste i brødteksten. Nettstedet lager kilde-asiden a
 
 ### Påstandsblokker
 
-Bruk dette formatet for nye artikler:
+Bruk dette formatet:
 
 ```njk
 {% claim "context", "Påstanden i originalartikkelen som vurderes", "Bastants konklusjon med nødvendige forbehold." %}
@@ -195,17 +196,9 @@ Gjengi originalens formulering med tydelig attribusjon. Forklar hva dokumentasjo
 
 De tre obligatoriske argumentene er vurderingsnøkkel (`status`), påstand som tittel (`title`) og Bastants minikonklusjon (`conclusion`). De skal være ren tekst uten Markdown eller HTML.
 
-* `title` skal gjengi den konkrete påstanden i originalartikkelen, som et kort, ordrett sitat eller en trofast parafrase. Bruk anførselstegn bare ved ordrette sitater. Behold nødvendige avgrensninger og attribusjon. Ikke bruk Bastants korrigering eller konklusjon som tittel.
-* `status` vurderer påstanden i `title`, ikke Bastants konklusjon. Hvis blokken undersøker et inntrykk eller en rimelig tolkning av originalteksten, skal dette fremgå tydelig; ikke fremstille tolkningen som en uttrykkelig påstand fra mediet. Hvis påstanden kommer fra en annen kilde, skal kilden fremgå tydelig.
-* `conclusion` skal alltid skrives som et eget tredje argument og gi Bastants korte svar på påstanden, med nødvendige forbehold. Nettstedet viser automatisk «Bastants vurdering:» foran teksten; ikke skriv dette prefikset i argumentet. Konklusjonen skal ikke bare gjenta vurderingsetiketten eller bare finnes i utdypingen.
-
-Eksempel på skillet (illustrerende):
-
-```njk
-{% claim "incorrect", "40 prosent av organisasjonens inntekter kommer fra USA", "40-prosenttallet gjelder mineryddingsarbeidet, ikke organisasjonens samlede inntekter." %}
-Gjengi originalens formulering og dokumenter hvilken nevner tallet gjelder, med kildehenvisninger.
-{% endclaim %}
-```
+* `title` gjengir den konkrete påstanden som et kort, ordrett sitat eller en trofast parafrase, med nødvendige avgrensninger og attribusjon. Bruk anførselstegn ved ordrette sitater og merk tolkninger tydelig.
+* `status` angir vurderingen av påstanden i `title`.
+* `conclusion` gir Bastants korte svar på påstanden, med nødvendige forbehold. Nettstedet legger til prefikset «Bastants vurdering:».
 
 Kildehenvisningene til minikonklusjonen skal stå nær den utdypede begrunnelsen inne i blokken. Tittel, etikett og minikonklusjon er alltid synlige; leseren åpner resten selv. Nødvendige forbehold må derfor stå i minikonklusjonen og ikke bare i utdypingen.
 
@@ -230,13 +223,13 @@ Dokumentasjon og vurdering med kildehenvisninger.
 
 Argumentet viser markeringen «Sentralt for hovedbudskapet» og begrunnelsen i utdypingen. Utelat det når betydningen ikke er vesentlig. Vurder om funnet påvirker hovedpremisset eller konklusjonen, om en korrigering ville endre leserens forståelse vesentlig, og om det gjelder overskrift eller ingress fremfor en perifer detalj. Skill betydning fra sikkerhet: også godt dokumenterte og uavklarte premisser kan være sentrale.
 
-Sorter etter betydning for forståelsen, ikke etter kritikkens styrke. Ikke bruk tallkarakterer, alvorlighetsnivåer eller en samlet dom. Eldre `observation`-bokser støttes fortsatt, men nye artikler skal bruke `claim`.
+Sorter påstandsblokkene etter betydning for leserens forståelse.
 
 ### Kortere tekst
 
 Skriv kort svar først og én hovedforklaring per påstand. Sikt normalt mot én setning i minikonklusjonen og to–fire korte avsnitt i utdypingen; utvid når dokumentasjonen eller nødvendige forbehold krever det. Dette er veiledende, ikke en grense som rettferdiggjør å fjerne vesentlig informasjon.
 
-Fjern gjentakelser mellom innledning, minikonklusjoner og avslutning. Forklar felles bakgrunn ett sted. Ekspandering skal bevare nødvendig dokumentasjon, ikke begrunne unødvendig lange tekster.
+Fjern gjentakelser mellom innledning, minikonklusjoner og avslutning. Forklar felles bakgrunn ett sted.
 
 ## Bakgrunnsbokser
 
@@ -271,7 +264,7 @@ Kildebelegg faktiske opplysninger i boksene på samme måte som i hovedteksten. 
 Kontroller følgende før Markdown-filen leveres:
 
 * Front matter er gyldig YAML.
-* Alle URL-felt inneholder rene, absolutte adresser uten Markdown, HTML eller siteringsmarkører.
+* Alle URL-felt inneholder absolutte HTTP- eller HTTPS-adresser.
 * Alle obligatoriske metadata er fylt ut med verifiserte verdier.
 * `review.publisher` og `review.source` finnes i det delte registeret, og `review.type` finnes under publisher.
 * Originalartikkelens tittel, datoer og sitater er gjengitt korrekt.
@@ -287,8 +280,8 @@ Kontroller følgende før Markdown-filen leveres:
 * Konklusjonen går ikke lenger enn dokumentasjonen gir grunnlag for.
 * Eventuelle vurderinger mot redaksjonelle krav tilfører noe konkret, viser til riktig krav og versjon, og skiller Bastants vurdering fra en eventuell PFU-avgjørelse.
 * Brukerens innspill er innarbeidet, og kildehenvisninger i både hovedtekst og bakgrunnsbokser stemmer med den endelige kildelisten.
-* Hver påstandsblokk har originalens påstand som tittel, ikke Bastants korrigering eller konklusjon. Sitater, parafraser og tolkninger er tydelig skilt, med nødvendig attribusjon.
-* Hver påstandsblokk har en etikett som vurderer påstanden i tittelen, og et eget obligatorisk `conclusion`-argument som kan leses selvstendig, med nødvendige forbehold. Sentrale funn er konkret begrunnet uten å blande betydning og sikkerhet.
+* Påstandsblokkenes titler gjengir påstandene som vurderes, med tydelig skille mellom sitater, parafraser og tolkninger og nødvendig attribusjon.
+* Hver påstandsblokk har en passende vurderingsetikett og en selvstendig minikonklusjon med nødvendige forbehold. Markering av sentrale funn er begrunnet.
 * Artikkelen har `status: draft`.
 
 ## Leveranseformat
