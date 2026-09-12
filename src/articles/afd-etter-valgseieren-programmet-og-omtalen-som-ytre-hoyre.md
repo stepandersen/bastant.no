@@ -12,6 +12,7 @@ topics:
   - innvandring
   - demokrati
 review:
+  publisher: nrk
   source: nrk
   type: urix
   title: "Ytre høyre-seier i tysk delstat"
@@ -139,7 +140,7 @@ sources:
 
 ---
 
-[Les NRKs artikkel først](https://www.nrk.no/urix/afd-vinner-valg-i-tyskland-1.18013286). Denne gjennomgangen undersøker først og fremst hvordan NRK beskriver AfD og partiets politikk etter valgseieren i Sachsen-Anhalt. Den forsøker ikke å fastslå hvorfor velgerne stemte på partiet.
+[Les NRKs artikkel først](https://www.nrk.no/urix/afd-vinner-valg-i-tyskland-1.18013286). Denne gjennomgangen undersøker først og fremst hvordan NRK beskriver AfD og partiets politikk etter valgseieren i Sachsen-Anhalt.
 
 Det foreløpige resultatet fra samtlige 2661 valgkretser gir AfD 43,8 prosent av stemmene. Det er dermed ingen tvil om at partiet vant valget klart. [kilde 1](#kilde-1)
 

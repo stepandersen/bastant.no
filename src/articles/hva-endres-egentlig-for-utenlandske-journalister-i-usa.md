@@ -10,6 +10,7 @@ topics:
   - pressefrihet
   - innvandring
 review:
+  publisher: nrk
   source: nrk
   type: korrespondentbrev
   title: "Korrespondentbrev fra USA: Er vi fortsatt velkommen her?"

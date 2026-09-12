@@ -6,6 +6,7 @@ status: draft
 topics:
   - emne
 review:
+  publisher: nrk
   source: nrk
   type: korrespondentbrev
   title: "Tittelen på NRK-artikkelen"

@@ -3,7 +3,7 @@ layout: layouts/base.njk
 ---
 <article class="article wrap">
   <header class="article-header">
-    {% if review %}<p class="eyebrow">{{ review | sourceName }}</p>{% endif %}
+    {% if review %}<p class="eyebrow">{{ review | publisherName }}</p>{% endif %}
     <h1>{{ title }}</h1>
     {% if summary %}<p class="article-deck">{{ summary }}</p>{% endif %}
     <div class="article-meta">

@@ -1,8 +1,8 @@
-{% if article.data.review %}{% set sharedSource = article.data.review | sourceDetails %}{% endif %}
+{% if article.data.review %}{% set reviewedArticle = article.data.review | reviewDetails %}{% endif %}
 <article class="compact-article">
   <div class="compact-article__meta">
     {% if article.data.review %}
-      <span><strong>{{ article.data.review | sourceName }}</strong><span aria-hidden="true"> / </span>{{ sharedSource.type.name }}</span>
+      <span><strong>{{ article.data.review | publisherName }}</strong><span aria-hidden="true"> / </span>{{ reviewedArticle.type.name }}</span>
     {% endif %}
     <time datetime="{{ article.date | htmlDate }}">{{ article.date | readableDate }}</time>
   </div>

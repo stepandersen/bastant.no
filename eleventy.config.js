@@ -1,6 +1,6 @@
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { DateTime } from "luxon";
-import sourceTypes from "./src/_data/sourceTypes.js";
+import { publisherName, reviewDetails } from "./lib/review-metadata.js";
 import { relatedArticles } from "./lib/article-relations.js";
 import { existsSync } from "node:fs";
 
@@ -30,20 +30,8 @@ export default function (eleventyConfig) {
   );
   eleventyConfig.addFilter("limit", (items, count) => (items || []).slice(0, count));
   eleventyConfig.addFilter("statusLabel", (status) => STATUS_LABELS[status] || status);
-  eleventyConfig.addFilter("sourceName", (review) => {
-    if (!review) return "";
-    if (review.source && sourceTypes[review.source]) return sourceTypes[review.source].site;
-    if (review.site) return review.site;
-    try {
-      return new URL(review.url).hostname.replace(/^www\./, "");
-    } catch {
-      return review.publisher || "";
-    }
-  });
-  eleventyConfig.addFilter("sourceDetails", (review) => {
-    const source = sourceTypes[review.source];
-    return { ...source, type: source.types[review.type] };
-  });
+  eleventyConfig.addFilter("publisherName", publisherName);
+  eleventyConfig.addFilter("reviewDetails", reviewDetails);
   eleventyConfig.addFilter("articlesForTopic", (articles, topic) =>
     (articles || []).filter((article) => (article.data.topics || []).includes(topic))
   );
@@ -80,9 +68,7 @@ export default function (eleventyConfig) {
       }
       const review = article.data.review;
       if (!review) continue;
-      const source = sourceTypes[review.source];
-      if (!source) throw new Error(`${article.inputPath}: Ukjent review.source «${review.source}».`);
-      if (!source.types[review.type]) throw new Error(`${article.inputPath}: Ukjent review.type «${review.type}» for ${review.source}.`);
+      reviewDetails(review, article.inputPath);
     }
     return allArticles
       .filter((item) => item.data.status !== "draft")

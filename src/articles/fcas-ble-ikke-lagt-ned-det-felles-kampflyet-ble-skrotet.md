@@ -11,7 +11,8 @@ topics:
   - tyskland
   - frankrike
 review:
-  source: nrk
+  publisher: nrk
+  source: ntb
   type: urix
   title: "Kampflyet som ikke kom seg på vingene"
   url: "https://www.nrk.no/urix/samarbeidsfiasko-for-tyskland-og-frankrike---skroter-felles-kampfly-1.17914090"

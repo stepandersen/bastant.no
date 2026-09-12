@@ -24,9 +24,19 @@ Se [AI_ARTICLE_INSTRUCTIONS.md](AI_ARTICLE_INSTRUCTIONS.md) for en komplett inst
 
 Kilder legges i artikkelens `sources`-liste. Den delte kildekomponenten viser dem automatisk som en aside ved siden av artikkelen på brede skjermer og under teksten på små skjermer. Bruk `#kilde-1`, `#kilde-2` og så videre for å lenke til dem fra brødteksten.
 
-Publikasjonen som gjennomgås og publikasjonens egen artikkeltype velges med `review.source` og `review.type`, for eksempel `nrk` og `korrespondentbrev`. Felles navn og beskrivelser vedlikeholdes én gang i `src/_data/sourceTypes.js`. Bygget stopper dersom en artikkel bruker en ukjent kilde eller type.
+Publiseringsstedet velges med `review.publisher`, og innholdsprodusenten med `review.source`. Begge er obligatoriske nøkler fra `src/_data/sourceTypes.js`. For egenprodusert innhold settes begge til samme verdi, for eksempel `nrk`. For en NTB-artikkel publisert hos VG brukes `publisher: vg` og `source: ntb`. `review.type` velges blant publiseringsstedets artikkeltyper, uavhengig av produsenten. Bygget stopper ved ukjent eller manglende publisher, source eller type.
+
+Artikkelvisning og lister bruker publisher som hovedavsender. Når source er forskjellig fra publisher, viser artikkelens informasjonsboks også «Source: NTB» (med produsentens registrerte navn). `review.url` er lenken til artikkelen hos publisher. Kildelisten `sources` er separat dokumentasjon og beholder sitt eget `publisher`-felt.
 
 Registeret publiseres automatisk på `/kilder/`, slik at eksterne skribenter og AI-verktøy kan lese de gyldige nøklene uten tilgang til JavaScript-filen.
+
+`roles` angir hvilke roller en oppføring kan brukes i: `publisher` tillater `review.publisher`, og `producer` tillater `review.source`. De eksisterende publikasjonene har begge roller. NTB, AP, Reuters og AFP er foreløpig registrert som produsenter. Dette beskriver bruken i Bastants register, ikke alle tjenestene byråene tilbyr; AP og Reuters har også egne publikumsnettsteder. Ved gjennomgang av en artikkel publisert direkte der må `publisher`-rollen og relevante artikkeltyper først registreres. Bygget avviser bruk i en rolle som ikke er registrert.
+
+Nyhetsstedets uttalte redaksjonelle prinsipper legges i det valgfrie feltet `editorialPrinciples` på publikasjonen, på samme nivå som `name`, `description` og `types`. Bruk `description` til en kildebelagt oppsummering av egne mål og krav, og `sources` til en liste med `{ title, url }` for dokumentasjonen. Beskriv kravene slik nyhetsstedet uttrykker dem; dette er ikke en vurdering av etterlevelsen. Prinsippene vises bare i kilderegisteret og gjelder hele publikasjonen, ikke en bestemt artikkeltype.
+
+Et nyhetssted kan registreres med `types: {}` inntil aktuelle artikkeltyper er dokumentert. Det vises da i kilderegisteret uten en tom artikkeltypeseksjon. Før stedet brukes i en artikkel, må den aktuelle typen legges til.
+
+Eierskap og statlig støtte registreres på publikasjonen i `ownership` og `stateSupport`, begge med `description`, `sources: [{ title, url }]` og `checked` (kontrolldato som `YYYY-MM-DD`). Feltene vises bare i kilderegisteret. Oppgi år og hvilken virksomhet støttebeløp gjelder. Skill mellom produksjonstilskudd, allmennkringkastingsfinansiering og indirekte støtte som momsfritak. Fravær fra en mottakerliste dokumenterer bare den aktuelle ordningen og perioden, ikke fravær av all offentlig støtte.
 
 Filnavnet blir artikkelens URL. Bruk små ASCII-bokstaver og bindestrek, for eksempel `nrk-og-vaermeldingen.md`.
 

@@ -11,6 +11,7 @@ topics:
   - olje
   - demokrati
 review:
+  publisher: nrk
   source: nrk
   type: urix
   title: "Omstridt avtale: – De skal stjele oljen vår i mange år"

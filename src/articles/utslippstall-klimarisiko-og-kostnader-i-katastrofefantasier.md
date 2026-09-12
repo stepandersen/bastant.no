@@ -9,6 +9,7 @@ topics:
   - klimapolitikk
   - utslipp
 review:
+  publisher: nrk
   source: nrk
   type: replikk
   title: "Katastrofefantasier"

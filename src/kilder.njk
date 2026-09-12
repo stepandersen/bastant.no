@@ -1,13 +1,15 @@
 ---
 layout: layouts/base.njk
 title: Kilderegister
-summary: Gyldige publikasjoner og artikkeltyper som kan brukes i metadata for Bastants artikler.
+summary: Nyhetssteder, eierskap, statlig støtte, uttalte redaksjonelle prinsipper og artikkeltyper.
 permalink: /kilder/index.html
 ---
 <header class="page-header wrap">
   <p class="eyebrow">Felles metadata</p>
   <h1>Kilderegister</h1>
-  <p>Denne siden viser gyldige verdier for <code>review.source</code> og <code>review.type</code>. Registeret genereres direkte fra dataene nettstedet bruker.</p>
+  <p>Her finner du nyhetsstedene vi gjennomgår, eierskap, statlig støtte, uttalte redaksjonelle prinsipper og artikkeltyper. Opplysningene gjelder publikasjonen som helhet.</p>
+  <p>Registeret omfatter også nyhetsbyråer som leverer artikler til publikasjonene. Rollene viser hvordan hver oppføring kan brukes hos Bastant: som publiseringssted, innholdsprodusent eller begge deler.</p>
+  <p>Støtteoversikten viser dokumenterte ordninger og årstall. Produksjonstilskudd, allmennkringkastingsfinansiering og indirekte støtte gjennom momsfritak omtales hver for seg. Oversikten er ikke et fullstendig regnskap over alle offentlige tilskudd eller støtte til andre selskaper i samme konsern.</p>
 </header>
 
 <section class="source-registry wrap" aria-label="Registrerte publikasjoner og artikkeltyper">
@@ -15,14 +17,50 @@ permalink: /kilder/index.html
     <article class="source-registry__source">
       <header>
         <div>
-          <p class="section-kicker">Publikasjon</p>
+          <p class="section-kicker">{% if "publisher" in source.roles %}Publikasjon{% if "producer" in source.roles %} / innholdsprodusent{% endif %}{% else %}Innholdsprodusent{% endif %}</p>
           <h2>{{ source.name }}</h2>
         </div>
-        <code>source: {{ sourceKey }}</code>
+        <div>
+          {% if "publisher" in source.roles %}<code>publisher: {{ sourceKey }}</code>{% endif %}
+          {% if "producer" in source.roles %}<code>source: {{ sourceKey }}</code>{% endif %}
+        </div>
       </header>
       <p class="source-registry__site">{{ source.site }}</p>
       <p>{{ source.description }}</p>
 
+      {% for field, heading in {ownership: "Eierskap", stateSupport: "Statlig støtte"} %}
+        {% set details = source[field] %}
+        {% if details %}
+          <section class="source-registry__principles" aria-labelledby="{{ field }}-{{ sourceKey }}">
+            <h3 id="{{ field }}-{{ sourceKey }}">{{ heading }}</h3>
+            <p>{{ details.description }}</p>
+            {% if details.sources.length %}
+              <ul>
+                {% for reference in details.sources %}
+                  <li><a href="{{ reference.url }}">{{ reference.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if details.checked %}<small>Kontrollert {{ details.checked | readableDate }}.</small>{% endif %}
+          </section>
+        {% endif %}
+      {% endfor %}
+
+      {% if source.editorialPrinciples %}
+        <section class="source-registry__principles" aria-labelledby="principles-{{ sourceKey }}">
+          <h3 id="principles-{{ sourceKey }}">Uttalte redaksjonelle prinsipper</h3>
+          <p>{{ source.editorialPrinciples.description }}</p>
+          {% if source.editorialPrinciples.sources.length %}
+            <ul>
+              {% for reference in source.editorialPrinciples.sources %}
+                <li><a href="{{ reference.url }}">{{ reference.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </section>
+      {% endif %}
+
+      {% if "publisher" in source.roles and source.types | length %}
       <div class="source-registry__types">
         <h3>Artikkeltyper</h3>
         {% for typeKey, type in source.types %}
@@ -35,6 +73,7 @@ permalink: /kilder/index.html
           </section>
         {% endfor %}
       </div>
+      {% endif %}
     </article>
   {% endfor %}
 </section>

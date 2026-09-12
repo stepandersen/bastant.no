@@ -112,8 +112,10 @@ img { max-width: 100%; height: auto; }
 .source-registry code { display: inline-block; padding: .3rem .5rem; background: var(--surface); border: 1px solid var(--line); color: var(--accent-ink); font: 700 .85rem/1.2 ui-monospace, "Cascadia Code", monospace; }
 .source-registry__site { margin-bottom: .4rem; color: var(--accent-ink); font-weight: 800; }
 .source-registry__source > p:not(.source-registry__site) { max-width: var(--measure); font: 1.08rem/1.55 var(--serif); }
-.source-registry__types { max-width: 52rem; margin-top: 2rem; }
-.source-registry__types > h3 { padding-bottom: .7rem; border-bottom: 2px solid var(--text); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; }
+.source-registry__types, .source-registry__principles { max-width: 52rem; margin-top: 2rem; }
+.source-registry__types > h3, .source-registry__principles > h3 { padding-bottom: .7rem; border-bottom: 2px solid var(--text); font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; }
+.source-registry__principles p { max-width: var(--measure); font: 1.08rem/1.55 var(--serif); }
+.source-registry__principles li { margin-block: .5rem; overflow-wrap: anywhere; }
 .source-registry__types section { display: grid; grid-template-columns: minmax(12rem, .75fr) 1.5fr; gap: 2rem; padding-block: 1.25rem; border-bottom: 1px solid var(--line); }
 .source-registry__types section div { display: flex; flex-direction: column; align-items: start; gap: .55rem; }
 .source-registry__types h4, .source-registry__types p { margin: 0; }

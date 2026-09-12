@@ -9,6 +9,7 @@ topics:
   - frp
   - klimadebatt
 review:
+  publisher: nrk
   source: nrk
   type: kronikk
   title: "Nå har det rablet"

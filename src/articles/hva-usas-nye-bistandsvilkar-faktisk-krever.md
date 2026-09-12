@@ -11,6 +11,7 @@ topics:
   - likestilling
   - sivilsamfunn
 review:
+  publisher: nrk
   source: nrk
   type: urix
   title: "Norsk Folkehjelp seier nei til 400 millionar kroner"

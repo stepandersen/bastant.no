@@ -58,6 +58,7 @@ status: draft
 topics:
   - relevant-emne
 review:
+  publisher: nrk
   source: nrk
   type: korrespondentbrev
   title: "Den nøyaktige tittelen på den opprinnelige artikkelen"
@@ -84,8 +85,9 @@ Regler for metadata:
 * `date` er Bastants publiseringsdato; `review.published` er originalartikkelens publiseringsdato.
 * Utelat `review.updated` dersom originalkilden ikke oppgir en oppdateringsdato.
 * `review.accessed` er datoen originalartikkelen sist ble kontrollert.
-* `review.source` og `review.type` er nøkler som finnes i det offentlige kilderegisteret på `/kilder/` (generert fra `src/_data/sourceTypes.js`). Ikke oversett navnene.
-* Hvis artikkelen ikke passer inn i en eksisterende `review.source`- eller `review.type`-nøkkel, skal du foreslå konkret hvilken oppføring som bør legges til i `src/_data/sourceTypes.js` og bruke den foreslåtte oppføringen i artikkelen.
+* `review.publisher` er publiseringsstedet og `review.source` er innholdsprodusenten. Begge er obligatoriske nøkler fra `/kilder/` (generert fra `src/_data/sourceTypes.js`). Bruk samme nøkkel for begge ved egenprodusert innhold. For NTB-innhold hos VG brukes `publisher: vg` og `source: ntb`. Kontroller krediteringen før du angir ekstern produsent.
+* `review.type` er en av publiseringsstedets typer, ikke produsentens. `review.url` skal peke på artikkelen hos publisher. Bruk publisher som hovedavsender i teksten (for eksempel «vg.no skriver»); ekstern source vises i informasjonsboksen. Registerets `roles` må inneholde `publisher` for publiseringsstedet og `producer` for produsenten. NTB, AP, Reuters og AFP er registrert som produsenter og kan ikke brukes som publisher uten at registeret utvides.
+* Hvis publisher, source eller publiseringsstedets type mangler i registeret, skal du foreslå konkret hvilken oppføring som bør legges til i `src/_data/sourceTypes.js` og bruke den foreslåtte oppføringen i artikkelen. Ikke oversett nøklene.
 * `topics` er Bastants emneinndeling, ikke originalartikkelens artikkeltype. Bruk korte, gjenbrukbare emner med små bokstaver.
 * `sources` inneholder dokumentasjon brukt av Bastant. Originalartikkelen hører bare hjemme under `review` og skal ikke gjentas i `sources`.
 * `sourceType` beskriver kildens rolle i dokumentasjonen, ikke hvor troverdig den er.
@@ -177,7 +179,7 @@ Kontroller følgende før Markdown-filen leveres:
 
 * Front matter er gyldig YAML.
 * Alle obligatoriske metadata er fylt ut med verifiserte verdier.
-* `review.source` og `review.type` finnes i det delte registeret.
+* `review.publisher` og `review.source` finnes i det delte registeret, og `review.type` finnes under publisher.
 * Originalartikkelens tittel, datoer og sitater er gjengitt korrekt.
 * Alle kilder er åpnet og kontrollert, ikke bare funnet gjennom et søkeresultat.
 * Hver ny faktisk opplysning har relevant dokumentasjon.

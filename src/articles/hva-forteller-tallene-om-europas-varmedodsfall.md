@@ -8,6 +8,7 @@ topics:
   - helse
   - beredskap
 review:
+  publisher: nrk
   source: nrk
   type: kronikk
   title: "Varmen dreper i stillhet"
