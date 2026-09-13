@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+title: Utkast
+summary: Artikler under arbeid, klare for gjennomgang før publisering.
+noindex: true
+eleventyExcludeFromCollections: true
+eleventyImport:
+  collections: [drafts]
+---
+<header class="page-header wrap"><p class="eyebrow">Til gjennomgang</p><h1>Utkast</h1><p>{{ summary }}</p><p>Denne siden og utkastene er offentlig tilgjengelige for alle som har adressen.</p></header>
+<section class="listing wrap" aria-label="Artikkelutkast">
+  {% for article in collections.drafts %}
+    {% include "components/article-card.njk" %}
+  {% else %}
+    <p>Ingen utkast til gjennomgang akkurat nå.</p>
+  {% endfor %}
+</section>

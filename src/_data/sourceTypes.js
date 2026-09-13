@@ -319,7 +319,12 @@ const sourceTypes = {
         { title: "TV 2s etikkreglement – punkt 2.5 og 7.2 (2011), hos Norsk Redaktørforening", url: "https://gammel.nored.no/Etikk/Interne-etiske-regler/0" },
       ],
     },
-    types: {},
+    types: {
+      nyhet: {
+        name: "Nyhet",
+        description: "TV 2s ordinære redaksjonelle nyhetsartikler.",
+      },
+    },
   },
   nrk: {
     roles: ["publisher", "producer"],

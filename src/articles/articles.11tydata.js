@@ -1,8 +1,8 @@
 export default {
   eleventyComputed: {
-    layout: (data) => data.status === "draft" ? false : "layouts/article.njk",
+    layout: () => "layouts/article.njk",
     permalink: (data) =>
-      data.status === "draft" ? false : `/artikler/${data.page.fileSlug}/index.html`,
-    eleventyExcludeFromCollections: (data) => data.status === "draft",
+      `/${data.status === "draft" ? "utkast" : "artikler"}/${data.page.fileSlug}/index.html`,
+    noindex: (data) => data.status === "draft",
   },
 };

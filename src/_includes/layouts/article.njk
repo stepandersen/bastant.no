@@ -2,15 +2,21 @@
 layout: layouts/base.njk
 ---
 <article class="article wrap">
+  {% if status == 'draft' %}
+    <aside class="development-notice" aria-label="Utkast">
+      <strong>Utkast · Til gjennomgang</strong>
+      <p>Denne artikkelen er under arbeid og er ikke ferdig publisert. <a href="{{ '/utkast/' | url }}">Alle utkast</a></p>
+    </aside>
+  {% endif %}
   <header class="article-header">
     {% if review %}<p class="eyebrow">{{ review | publisherName }}</p>{% endif %}
     <h1>{{ title }}</h1>
     {% if summary %}<p class="article-deck">{{ summary }}</p>{% endif %}
     <div class="article-meta">
-      <span>Publisert <time datetime="{{ date | htmlDate }}">{{ date | readableDate }}</time></span>
+      <span>{% if status == 'draft' %}Utkast datert{% else %}Publisert{% endif %} <time datetime="{{ date | htmlDate }}">{{ date | readableDate }}</time></span>
       {% if updated %}<span>Oppdatert <time datetime="{{ updated | htmlDate }}">{{ updated | readableDate }}</time></span>{% endif %}
       {% if topics and topics.length %}
-        <span class="topic-links">{% for topic in topics %}<a href="{{ topic | topicUrl }}">{{ topic }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</span>
+        <span class="topic-links">{% for topic in topics %}{% if status == 'draft' %}{{ topic }}{% else %}<a href="{{ topic | topicUrl }}">{{ topic }}</a>{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</span>
       {% endif %}
     </div>
   </header>

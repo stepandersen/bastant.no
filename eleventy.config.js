@@ -78,6 +78,12 @@ export default function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  eleventyConfig.addCollection("drafts", (collectionApi) =>
+    collectionApi.getFilteredByGlob("src/articles/*.md")
+      .filter((item) => item.data.status === "draft")
+      .sort((a, b) => b.date - a.date)
+  );
+
   eleventyConfig.addCollection("topicList", (collectionApi) => {
     const topics = new Set();
     collectionApi.getFilteredByGlob("src/articles/*.md").forEach((item) => {

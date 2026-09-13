@@ -24,6 +24,8 @@ Se [AI_ARTICLE_INSTRUCTIONS.md](AI_ARTICLE_INSTRUCTIONS.md) for en komplett inst
 3. Behold `status: draft` mens du arbeider.
 4. Endre til `status: published` når artikkelen skal publiseres.
 
+Utkast kan gjennomgås på `/utkast/`, med individuelle artikler på `/utkast/filnavn/`. Sidene er offentlig tilgjengelige uten innlogging, men oversikten har ingen lenke fra nettstedets navigasjon. Utkast er merket tydelig, ber søkemotorer om ikke å indeksere dem og holdes utenfor publiserte artikkellister, emner, RSS og sitemap. Dette er ikke tilgangskontroll: alle med adressen kan lese dem. Når status endres til `published`, flyttes artikkelen til `/artikler/filnavn/` ved neste rene bygg.
+
 Kilder legges i artikkelens `sources`-liste. Den delte kildekomponenten viser dem automatisk som en aside ved siden av artikkelen på brede skjermer og under teksten på små skjermer. Bruk `#kilde-1`, `#kilde-2` og så videre for å lenke til dem fra brødteksten.
 
 Publiseringsstedet velges med `review.publisher`, og innholdsprodusenten med `review.source`. Begge er obligatoriske nøkler fra `src/_data/sourceTypes.js`. Alle publiseringssteder kan bruke NTB, Reuters, AP, AFP eller andre registrerte produsenter som source. Kombinasjonen `publisher: vg` og `source: ntb` er bare ett eksempel; det finnes ingen binding mellom bestemte publiseringssteder og produsenter. For dokumentert egenprodusert innhold settes begge til samme verdi, for eksempel `nrk`. Kontroller artikkelens tekstkreditering før source velges; bildekreditering eller en henvisning til et byrå er ikke tilstrekkelig. `review.type` velges blant publiseringsstedets artikkeltyper, uavhengig av produsenten. Bygget stopper ved ukjent eller manglende publisher, source eller type.
