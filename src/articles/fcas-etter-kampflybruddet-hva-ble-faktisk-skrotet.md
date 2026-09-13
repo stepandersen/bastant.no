@@ -199,7 +199,7 @@ Under Scholz ble samarbeidet fortsatt offentlig fremstilt som strategisk viktig.
 Dette beviser ikke at forholdet var like tett som under Merkel, eller at Frankrike hadde samme relative prioritet. Det viser at den bredere fortellingen bør forstås som NRKs politiske analyse snarere enn en presist målbar opplysning.
 {% endclaim %}
 
-{% claim "context", "USA «snakker ned Nato-samarbeidet» og trekker amerikanske soldater ut av Europa", "NRKs bakgrunn hadde et reelt faktagrunnlag: Trump hadde vurdert reduksjoner og Pentagon hadde besluttet å trekke 5.000 soldater ut av Tyskland. Det var likevel ikke vedtatt en generell amerikansk tilbaketrekning fra Europa." %}
+{% claim "missing-context", "USA «snakker ned Nato-samarbeidet» og trekker amerikanske soldater ut av Europa", "NRKs bakgrunn hadde et reelt faktagrunnlag: Trump hadde vurdert reduksjoner og Pentagon hadde besluttet å trekke 5.000 soldater ut av Tyskland. Det var likevel ikke vedtatt en generell amerikansk tilbaketrekning fra Europa." %}
 NRK bruker forholdet mellom USA og de europeiske NATO-landene som bakgrunn for hvorfor europeisk forsvarssamarbeid har fått større betydning.
 
 Før NRKs publisering hadde Trump diskutert med rådgivere muligheten for å trekke amerikanske soldater ut av Europa. Reuters rapporterte 9. april at ingen beslutning da var tatt, samtidig som Det hvite hus offentlig hadde bekreftet at Trump også hadde vurdert å forlate NATO. Reuters oppga at USA på dette tidspunktet hadde mer enn 80.000 soldater i Europa. [kilde 10](https://www.reuters.com/world/trump-weighs-pulling-some-us-troops-europe-amid-nato-strains-official-says-2026-04-09/)

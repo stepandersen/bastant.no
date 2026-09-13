@@ -8,6 +8,7 @@ import { renderClaim } from "./lib/claim.js";
 const STATUS_LABELS = {
   documented: "Godt dokumentert",
   context: "Trenger kontekst",
+  "missing-context": "Manglende vesentlig kontekst",
   misleading: "Misvisende",
   unsupported: "Ikke dokumentert",
   incorrect: "Faktafeil",

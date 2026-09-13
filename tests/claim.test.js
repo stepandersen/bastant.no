@@ -6,6 +6,21 @@ import { renderClaim } from "../lib/claim.js";
 const require = createRequire(import.meta.url);
 const MarkdownIt = createRequire(require.resolve("@11ty/eleventy"))("markdown-it");
 
+test("utelatelser presenteres som kontekstvurderinger med synlig betydning og kildebelegg", () => {
+  const html = new MarkdownIt({ html: true }).render(renderClaim(
+    "**Hva mangler:** Dokumentasjon med [kilde 1](https://example.org/).",
+    "missing-context", "Befolkningsgrunnlaget", "Antallet per innbygger har gått ned.",
+  ));
+  const summary = html.split("</summary>")[0];
+  assert.match(html, /<details class="claim claim--missing-context">/);
+  assert.match(summary, /Kontekstvurdering/);
+  assert.match(summary, /Manglende vesentlig kontekst/);
+  assert.match(summary, /Betydning for forståelsen:<\/strong> Antallet per innbygger har gått ned\./);
+  assert.doesNotMatch(summary, /Bastants vurdering:|Sentralt for hovedbudskapet/);
+  assert.match(html, /<strong>Hva mangler:<\/strong>/);
+  assert.match(html, /href="https:\/\/example.org\/"/);
+});
+
 test("minikonklusjonen er synlig, utdyping lukket og Markdown-kilder rendres", () => {
   const html = new MarkdownIt({ html: true }).render(renderClaim(
     "Dokumentasjon med **forbehold** og [kilde 1](#kilde-1).", "context", "Påstand", "Svar med forbehold.",

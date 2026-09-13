@@ -37,6 +37,15 @@ Gjengi eller beskriv originalens opplysning presist og med nødvendig attribusjo
 Forklar vurderingen kort og legg en [kilde 1](https://...) nær opplysningen den støtter. Skill dokumenterte fakta fra egne slutninger og usikkerhet.
 {% endclaim %}
 
+{# Valgfritt: Bruk bare når researchen dokumenterer utelatelsen og vesentlig betydning. Fjern ellers blokken. #}
+{% claim "missing-context", "Temaet for den manglende konteksten", "Hva opplysningen endrer vesentlig for forståelsen, med nødvendige forbehold." %}
+**Forankring i originalartikkelen:** Kort sitat eller merket parafrase av relevant premiss, sammenligning eller konklusjon, med attribusjon.
+
+**Hva mangler:** Konkret, dokumentert opplysning med [kilde 1](https://...). Forklar at opplysningen var tilgjengelig ved publisering og kontroller at den ikke allerede omtales i originalen.
+
+**Hvorfor det er vesentlig:** Forklar hvordan opplysningen endrer forståelsen, med relevante motargumenter og begrensninger. Ikke tilskriv journalisten hensikt eller artikkelen en påstand den ikke har fremsatt.
+{% endclaim %}
+
 ## Bakgrunn
 
 {% background "Hva er …?" %}

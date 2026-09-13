@@ -171,6 +171,8 @@ img { max-width: 100%; height: auto; }
 .background-note__content { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
 .observation--incorrect, .observation--misleading { border-color: var(--accent); }
 .claim { margin: 1.4rem 0; background: var(--surface); border: 1px solid var(--line); }
+.claim--missing-context { border-inline-start: .3rem solid var(--muted); }
+.claim__kind { display: block; margin-bottom: .6rem; color: var(--muted); font: 700 .75rem/1.4 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
 .claim__summary { padding: 1.2rem; cursor: pointer; list-style: none; }
 .claim__summary::-webkit-details-marker { display: none; }
 .claim__summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }

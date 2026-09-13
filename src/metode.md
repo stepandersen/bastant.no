@@ -34,12 +34,23 @@ Kildelenker plasseres nær opplysningene de støtter og går direkte til origina
 
 - **Godt dokumentert:** Opplysningen støttes av relevante, tilgjengelige kilder.
 - **Trenger kontekst:** Opplysningen kan være riktig, men vesentlig sammenheng mangler.
+- **Manglende vesentlig kontekst:** Artikkelen utelater dokumenterbare opplysninger som er direkte relevante for et sentralt premiss, en sammenligning eller en konklusjon, og som med rimelighet ville kunne endre leserens forståelse vesentlig.
 - **Misvisende:** Ordlyden eller fremstillingen gir et inntrykk som ikke støttes godt av dokumentasjonen.
 - **Ikke dokumentert:** Vi finner ikke tilstrekkelig støtte for opplysningen i tilgjengelige kilder.
 - **Faktafeil:** Opplysningen motsies klart av pålitelig dokumentasjon.
 - **Uavklart:** Dokumentasjonen gir ikke grunnlag for en sikker konklusjon.
 
 Merkelappene vurderer innholdet, ikke journalistens hensikt.
+
+### Når vesentlig kontekst mangler
+
+Vi kontrollerer hele originalartikkelen før vi omtaler noe som utelatt. Vurderingen skal vise hva som mangler med kildegrunnlag, hvilket premiss, hvilken sammenligning eller konklusjon det berører, og hvordan opplysningen ville endre forståelsen vesentlig. Vi tar hensyn til artikkelens sjanger og avgrensning, undersøker forhold som taler mot innvendingen og oppgir nødvendige forbehold.
+
+Ved vurdering av originalpubliseringen må opplysningene ha vært tilgjengelige på publiseringstidspunktet. Senere opplysninger kan gi oppdatert bakgrunn, men er ikke grunnlag for å fastslå en opprinnelig utelatelse. Flere detaljer, et alternativt perspektiv eller en interessant sammenligning er ikke alene tilstrekkelig. Hvis utelatelsen eller betydningen ikke kan dokumenteres, bruker vi ikke kategorien som et fastslått funn.
+
+«Trenger kontekst» vurderer en konkret fremsatt opplysning. «Manglende vesentlig kontekst» vurderer en utelatelse som påvirker et sentralt premiss, en sammenligning eller en konklusjon. Samme forhold vurderes ikke dobbelt. Utelatelsen betyr ikke i seg selv at artikkelen er misvisende, og sier ikke noe om journalistens hensikt.
+
+Slike blokker merkes «Kontekstvurdering» og har en egen kantmarkering. Tittelen beskriver temaet for den manglende konteksten, og det korte svaret forklarer betydningen for forståelsen. Utdypingen forankrer vurderingen i et sitat eller en tydelig merket parafrase fra originalartikkelen; vi tilskriver ikke artikkelen en påstand den ikke har fremsatt.
 
 Hver påstand får et kort svar, med dokumentasjon og begrunnelse som kan åpnes. Nødvendige forbehold skal fremgå også av det korte svaret.
 

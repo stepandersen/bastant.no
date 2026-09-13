@@ -151,6 +151,13 @@ sources:
     accessed: 2026-09-13
     sourceType: primary
     note: "DSAs egen forklaring av organisasjonen, blant annet at DSA ikke er et politisk parti."
+  - title: "Inside the Democratic Party's effort to enlist social media influencers ahead of the midterms and 2028"
+    publisher: "ABC News"
+    url: "https://abcnews.com/Politics/inside-democratic-partys-effort-enlist-social-media-influencers/story?id=134993649"
+    published: 2026-07-23
+    accessed: 2026-09-13
+    sourceType: secondary
+    note: "Intervju med DNCs programansvarlige Matt Rein, som opplyser at DNC ikke betaler influenserne i programmet og ikke krever at de publiserer innholdet de får."
 ---
 
 NRKs korrespondentbrev beskriver en amerikansk valgkamp der politiske budskap i sosiale medier kan ligne vanlige personlige ytringer, også når noen har betalt for dem.
@@ -227,6 +234,16 @@ Et samlet følgertall er ikke det samme som 75 millioner unike personer. Én bru
 
 NRKs formulering om «10.000 politiske under ett-minutt-synsere og profiler innen sport og livsstil» fanger det politiske formålet, men «under ett minutt» finnes ikke i DNCs beskrivelse, og nettverket er ment å favne bredere enn politiske kommentatorer.
 
+{% endclaim %}
+
+{% claim "missing-context", "DNCs skaperprogram og betalte influenseroppdrag er forskjellige ordninger", "NRK omtaler DNCs nettverk på 550 skapere og målet om 10.000 i samme del av artikkelen som betalte politiske influensere, men opplyser ikke at DNCs programansvarlige sier at partiet ikke betaler deltakerne og ikke krever at de publiserer. Det er et vesentlig skille mellom organisert budskapssamarbeid og betalte anbefalinger." %}
+**Forankring i originalartikkelen:** Under mellomtittelen «10.000 veier inn i feeden» beskriver NRK først Demokratenes nettverk på rundt 550 innholdsskapere og målet om å utvide dette til 10.000. Kort etter viser artikkelen til New York Times' undersøkelse av hvordan politiske grupper på både høyre- og venstresiden betaler influensere for å spre budskap.
+
+**Hva mangler:** DNC beskriver selv programmet som et nettverk der partiet blant annet gir skapere daglige videoklipp og veiledning, kobler dem med folkevalgte og bygger relasjoner som kan brukes av kandidater og partiorganisasjoner. [Kilde 3](https://blueprint.democrats.org/p/building-the-new-media-infrastructure) I et intervju med ABC News 23. juli 2026 sa Matt Rein, DNCs ansvarlige for programmet, at DNC ikke betaler influenserne og at det heller ikke er noen forventning eller plikt om at deltakerne publiserer innholdet de får fra partiet. [Kilde 21](https://abcnews.com/Politics/inside-democratic-partys-effort-enlist-social-media-influencers/story?id=134993649) Opplysningen var dermed offentlig tilgjengelig før NRKs artikkel ble publisert 12. september.
+
+**Hvorfor det er vesentlig:** DNC-nettverket er et av NRKs største konkrete eksempler på hvordan partiene forsøker å komme inn i velgernes strømmer. Uten skillet mellom nettverket og betalte oppdrag kan de to formene for påvirkning lettere forstås som deler av samme betalingsmodell. Dokumentasjonen viser en viktig forskjell: DNC organiserer et nettverk som skal spre og forsterke partiets budskap, men ifølge partiets programansvarlige får deltakerne ikke betalt av DNC og har ingen plikt til å publisere. De betalte eksemplene New York Times dokumenterer gjelder derimot konkrete betalinger fra kandidatkampanjer, politiske grupper eller deres mellomledd. [Kilde 2](https://www.wral.com/news/ap/politics-campaigns-paid-influencers-september-2026/)
+
+NRK skriver ikke at DNC betaler de 550 skaperne, og artikkelen gjør også klart at noen politiske stemmer i sosiale medier får betalt mens andre ikke gjør det. Utelatelsen gjør derfor ikke den konkrete opplysningen om DNC-nettverket feil. Betydningen ligger i at skillet mellom et organisert, men ifølge DNC ubetalt nettverk og skjulte betalte anbefalinger er sentralt for artikkelens overordnede spørsmål om hvem som faktisk får betalt for budskapene i velgernes feed.
 {% endclaim %}
 
 {% claim "documented", "Levekostnadene ligger øverst, og omtrent én av tre godkjenner jobben Trump gjør", "Reuters/Ipsos-målingen støtter begge poengene: 47 prosent satte levekostnader øverst, mens Trumps samlede jobboppslutning var 33 prosent blant alle voksne og 37 prosent blant registrerte velgere." %}

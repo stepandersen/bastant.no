@@ -196,9 +196,9 @@ Gjengi originalens formulering med tydelig attribusjon. Forklar hva dokumentasjo
 
 De tre obligatoriske argumentene er vurderingsnøkkel (`status`), påstand som tittel (`title`) og Bastants minikonklusjon (`conclusion`). De skal være ren tekst uten Markdown eller HTML.
 
-* `title` gjengir den konkrete påstanden som et kort, ordrett sitat eller en trofast parafrase, med nødvendige avgrensninger og attribusjon. Bruk anførselstegn ved ordrette sitater og merk tolkninger tydelig.
-* `status` angir vurderingen av påstanden i `title`.
-* `conclusion` gir Bastants korte svar på påstanden, med nødvendige forbehold. Nettstedet legger til prefikset «Bastants vurdering:».
+* `title` gjengir den konkrete påstanden som et kort, ordrett sitat eller en trofast parafrase, med nødvendige avgrensninger og attribusjon. Bruk anførselstegn ved ordrette sitater og merk tolkninger tydelig. For `missing-context` beskriver tittelen temaet for den manglende konteksten, uten å konstruere en påstand fra originalartikkelen.
+* `status` angir vurderingen av påstanden i `title`, eller av utelatelsen ved `missing-context`.
+* `conclusion` gir Bastants korte svar på påstanden, med nødvendige forbehold. Nettstedet legger til prefikset «Bastants vurdering:». For `missing-context` forklarer minikonklusjonen konkret hva konteksten endrer, med prefikset «Betydning for forståelsen:».
 
 Kildehenvisningene til minikonklusjonen skal stå nær den utdypede begrunnelsen inne i blokken. Tittel, etikett og minikonklusjon er alltid synlige; leseren åpner resten selv. Nødvendige forbehold må derfor stå i minikonklusjonen og ikke bare i utdypingen.
 
@@ -206,6 +206,7 @@ Bruk eksisterende vurderinger:
 
 * `documented` – Godt dokumentert: relevant dokumentasjon støtter opplysningen.
 * `context` – Trenger kontekst: opplysningen kan være riktig, men vesentlig sammenheng mangler.
+* `missing-context` – Manglende vesentlig kontekst: Artikkelen utelater dokumenterbare opplysninger som er direkte relevante for et sentralt premiss, en sammenligning eller en konklusjon, og som med rimelighet ville kunne endre leserens forståelse vesentlig.
 * `misleading` – Misvisende: fremstillingen gir et inntrykk dokumentasjonen ikke støtter godt; forklar hvilket inntrykk og hvorfor.
 * `unsupported` – Ikke dokumentert: tilstrekkelig støtte ble ikke funnet i tilgjengelige kilder; dette betyr ikke at opplysningen er feil.
 * `incorrect` – Faktafeil: pålitelig dokumentasjon motsier opplysningen klart.
@@ -224,6 +225,26 @@ Dokumentasjon og vurdering med kildehenvisninger.
 Argumentet viser markeringen «Sentralt for hovedbudskapet» og begrunnelsen i utdypingen. Utelat det når betydningen ikke er vesentlig. Vurder om funnet påvirker hovedpremisset eller konklusjonen, om en korrigering ville endre leserens forståelse vesentlig, og om det gjelder overskrift eller ingress fremfor en perifer detalj. Skill betydning fra sikkerhet: også godt dokumenterte og uavklarte premisser kan være sentrale.
 
 Sorter påstandsblokkene etter betydning for leserens forståelse.
+
+### Blokker om manglende vesentlig kontekst
+
+Vurder aktivt om kategorien er aktuell i hver gjennomgang, men bruk den bare når kontrollpunktene i «Finn vesentlig manglende kontekst» i `AI_RESEARCH_INSTRUCTIONS.md` er oppfylt. Kontroller hele originalen, dokumenter opplysningen og dens tilgjengelighet ved publisering, og begrunn den vesentlige betydningen. Ta med relevante motargumenter og forbehold. Kategorien gjelder virkningen av utelatelsen, ikke journalistens hensikt, og innebærer ikke automatisk at artikkelen er misvisende.
+
+Bruk `context` for vurdering av en konkret fremsatt opplysning og `missing-context` for vurdering av selve utelatelsen. Ikke lag to blokker om samme forhold. En ønsket detalj eller et alternativt perspektiv er ikke nok. Ved utilstrekkelig dokumentasjon skal utelatelsen ikke presenteres som et fastslått funn.
+
+Bruk samme `claim`-format. Nettstedet viser en egen kantmarkering og «Kontekstvurdering», slik at blokken er tydelig forskjellig fra vurderinger av fremsatte påstander:
+
+```njk
+{% claim "missing-context", "Temaet for den manglende konteksten", "Hva den dokumenterte opplysningen endrer vesentlig, med nødvendige forbehold." %}
+**Forankring i originalartikkelen:** Kort sitat eller tydelig merket parafrase med attribusjon. Skill originalens utsagn fra Bastants tolkning av premisset.
+
+**Hva mangler:** Den konkrete opplysningen, med [kilde 1](https://...) og grunnlag for at den var tilgjengelig ved publisering.
+
+**Hvorfor det er vesentlig:** Forklar koblingen til premisset, sammenligningen eller konklusjonen og hvordan forståelsen endres. Ta med relevante motargumenter og vurderingens begrensninger.
+{% endclaim %}
+```
+
+Nødvendig kontekst skal stå i vurderingen, ikke bare i en bakgrunnsboks. Bruk det valgfrie fjerde argumentet etter de samme kravene som ellers; markeringen følger ikke automatisk av kategorien.
 
 ### Kortere tekst
 
@@ -280,7 +301,8 @@ Kontroller følgende før Markdown-filen leveres:
 * Konklusjonen går ikke lenger enn dokumentasjonen gir grunnlag for.
 * Eventuelle vurderinger mot redaksjonelle krav tilfører noe konkret, viser til riktig krav og versjon, og skiller Bastants vurdering fra en eventuell PFU-avgjørelse.
 * Brukerens innspill er innarbeidet, og kildehenvisninger i både hovedtekst og bakgrunnsbokser stemmer med den endelige kildelisten.
-* Påstandsblokkenes titler gjengir påstandene som vurderes, med tydelig skille mellom sitater, parafraser og tolkninger og nødvendig attribusjon.
+* Påstandsblokkenes titler gjengir påstandene som vurderes, med tydelig skille mellom sitater, parafraser og tolkninger og nødvendig attribusjon. For `missing-context` beskriver tittelen konteksttemaet, og utdypingen forankrer vurderingen i originalen uten å tilskrive den en oppdiktet påstand.
+* Hver `missing-context`-blokk dokumenterer hva som mangler, relevans, tilgjengelighet ved publisering og vesentlig endring i forståelsen, med motargumenter og forbehold. Kontekst som allerede finnes i originalen eller bare ble kjent senere er ikke fremstilt som utelatt. Samme forhold er ikke vurdert dobbelt.
 * Hver påstandsblokk har en passende vurderingsetikett og en selvstendig minikonklusjon med nødvendige forbehold. Markering av sentrale funn er begrunnet.
 * Artikkelen har `status: draft`.
 

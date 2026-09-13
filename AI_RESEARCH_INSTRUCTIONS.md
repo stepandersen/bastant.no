@@ -85,7 +85,19 @@ Ikke konstruer kunstig balanse dersom dokumentasjonen klart peker i én retning.
 
 ### Finn vesentlig manglende kontekst
 
-Se etter kontekst som vesentlig kan endre hvordan en rimelig leser forstår en konkret opplysning i nyhetsartikkelen.
+Se aktivt etter kontekst som vesentlig kan endre hvordan en rimelig leser forstår en konkret opplysning, et sentralt premiss, en sammenligning eller en konklusjon i nyhetsartikkelen. Ta mulige utelatelser med som undersøkelsesspørsmål i planen, ikke som forhåndskonklusjoner.
+
+**Manglende vesentlig kontekst:** Artikkelen utelater dokumenterbare opplysninger som er direkte relevante for et sentralt premiss, en sammenligning eller en konklusjon, og som med rimelighet ville kunne endre leserens forståelse vesentlig.
+
+Før kategorien `missing-context` brukes, skal alle følgende forhold være undersøkt og dokumentert i researchgrunnlaget:
+
+1. **Hva mangler?** Kontroller hele originalartikkelen, inkludert relevante faktabokser og bildetekster, i versjonen som vurderes. Registrer versjon og tidspunkt. Dokumenter den konkrete opplysningen med kontrollerte kilder. Hvis fullteksten eller relevant versjon ikke kan kontrolleres, kan utelatelsen ikke fastslås.
+2. **Hvorfor er det relevant?** Forankre vurderingen i et kort sitat eller en merket parafrase av artikkelens premiss, sammenligning eller konklusjon. Skill det artikkelen sier fra din tolkning. Ta hensyn til sjanger og rimelig avgrensning.
+3. **Hva endrer det?** Forklar konkret hvordan forståelsen med opplysningen skiller seg vesentlig fra forståelsen uten den. En interessant detalj, ønsket omtale av et alternativt perspektiv eller en mulig sammenligning er ikke nok.
+4. **Var opplysningen tilgjengelig?** Kontroller at dokumentasjonen var tilgjengelig ved publiseringen som vurderes. Senere kunnskap skal merkes som oppdatert bakgrunn, ikke opprinnelig manglende kontekst.
+5. **Holder innvendingen?** Let etter kontekst som allerede nyanserer artikkelen, rimelige motargumenter og dokumentasjon som svekker innvendingen. Oppgi begrensninger og hvor langt betydningen rekker.
+
+Bruk kategorien bare når både utelatelsen og den vesentlige betydningen er tilstrekkelig dokumentert. Ved utilstrekkelig grunnlag: beskriv usikkerheten der den er relevant, eller utelat punktet; ikke fastslå manglende kontekst. Bruk `context` når vurderingen gjelder nødvendig sammenheng for en konkret fremsatt påstand, og `missing-context` når selve utelatelsen er vurderingens gjenstand. Ikke vurder samme forhold i begge kategorier. Kategorien fastslår verken faktafeil, misvisende fremstilling eller journalistens hensikt i seg selv.
 
 Relevant kontekst kan blant annet være:
 
