@@ -2,7 +2,7 @@
 title: "Hvor avklart var Åkessons vei inn i regjeringen?"
 summary: "TV 2 omtaler muligheten for at Jimmie Åkesson og Sverigedemokraterna går inn i den svenske regjeringen etter riksdagsvalget."
 date: 2026-09-13
-status: draft
+status: published
 topics:
   - sverige
   - valg

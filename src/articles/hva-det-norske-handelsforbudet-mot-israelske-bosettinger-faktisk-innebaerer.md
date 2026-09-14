@@ -2,7 +2,7 @@
 title: "Hva det norske handelsforbudet mot israelske bosettinger faktisk innebærer"
 summary: "NRK omtaler regjeringens forslag om handelsforbud med israelske bosettinger og en samordnet reaksjon fra tolv vestlige land."
 date: 2026-09-13
-status: draft
+status: published
 topics:
   - israel-palestina
   - sanksjoner

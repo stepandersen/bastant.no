@@ -13,6 +13,12 @@ pnpm start
 
 Produksjonsbygget lages med `pnpm run build` og skrives til `_site/`.
 
+## Artikkelradar
+
+En separat, manuell kandidatinnboks henter feedmetadata og kan vurdere dem via OpenAI API.
+Kjør `npm run article-radar -- --no-ai` for å prøve innhentingen uten API-nøkkel.
+Radaren krever Node.js 24 og publiserer ingen sider. Se [bruk, nøkkeloppsett og kilder](docs/article-radar.md).
+
 ## Skrive en artikkel
 
 Tidligere artikler er flyttet til `archived/articles/`. Mappen ligger utenfor Eleventys innholdsmappe (`src/`), og artiklene publiseres derfor ikke som sider eller i lister, emner, RSS og sitemap. Innhold og metadata er bevart som historikk. Nye artikler opprettes i `src/articles/` etter instruksene nedenfor.

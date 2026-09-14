@@ -5,12 +5,17 @@
   "type": "module",
   "packageManager": "pnpm@11.19.0",
   "scripts": {
+    "test": "node --test",
+    "article-radar": "node scripts/article-radar/index.js",
+    "article-radar:collect": "node scripts/article-radar/index.js --collect-only",
+    "article-radar:assess": "node scripts/article-radar/index.js --assess-only",
     "build": "eleventy",
     "start": "eleventy --serve"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.6",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "fast-xml-parser": "^5.11.1",
     "luxon": "^3.7.2"
   }
 }

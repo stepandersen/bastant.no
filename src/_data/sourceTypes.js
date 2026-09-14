@@ -261,7 +261,12 @@ const sourceTypes = {
         { title: "Åpenhet – slik jobber vi i VG", url: "https://www.vg.no/informasjon" },
       ],
     },
-    types: {},
+    types: {
+      nyheter: {
+        name: "Nyheter",
+        description: "VGs hovedkategori for redaksjonelle nyhetsartikler.",
+      },
+    },
   },
   nettavisen: {
     roles: ["publisher", "producer"],
