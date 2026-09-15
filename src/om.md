@@ -29,6 +29,12 @@ KI er dermed med på både analysen og skrivingen. Det er vi som står bak Basta
 
 Les mer om hvordan gjennomgangene er bygget opp på siden om [metoden vår](/metode/). Finner du feil eller dokumentasjon som endrer bildet, ønsker vi å få vite om det.
 
+## Besøksstatistikk og personvern
+
+Vi bruker Cloudflare Web Analytics for å få anonymisert besøks- og ytelsesstatistikk. Analyseverktøyet lagrer ikke informasjonskapsler eller andre opplysninger i nettleseren og leser heller ikke fra nettleserens lagring. Cloudflare opplyser at IP-adressen som mottas som del av den vanlige nettverksforbindelsen, forkastes ved nærmeste datasenter og ikke lagres i tjenestens sentrale databaser eller logger. Les mer i [Cloudflares personverninformasjon for analyseverktøyet](https://developers.cloudflare.com/speed/observatory/rum-beacon/).
+
+Siden verktøyet ikke lagrer eller henter opplysninger fra enheten din, ber vi ikke om samtykke til denne besøksstatistikken. Du kan lese mer om reglene for informasjonskapsler og lignende teknologier i [Datatilsynets veiledning om samtykke](https://www.datatilsynet.no/personvern-pa-ulike-omrader/internett-og-apper/bruk-av-informasjonskapsler-og-andre-sporingsteknologier/).
+
 <h2 id="kontakt">Kontakt</h2>
 
 Kontaktinformasjon legges til før offentlig lansering. Inntil da kan feil og kildeforslag meldes gjennom prosjektets GitHub-repositorium.
