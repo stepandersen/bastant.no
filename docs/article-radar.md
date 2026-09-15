@@ -42,6 +42,18 @@ Det brukes vanlige HTTP-kall til OpenAIs [Responses API med Structured Outputs](
 
 ## Innboks og beslutninger
 
+Interaktiv gjennomgang av **alle åpne AI-vurderte kandidater**, høyeste score først:
+
+I en vanlig terminal fungerer `y`, `n`, `p` og `q` som hurtigtaster **uten Enter**. Ved pipet input brukes fortsatt ett svar per linje. Tastetrykk under lagring ignoreres for å unngå utilsiktede valg på neste kandidat.
+
+```sh
+npm run article-radar:review
+```
+
+Du ser tittel, ingress, publisister, lenker, score og begrunnelse for én kandidat om gangen. Skriv `yes`/`y` for selected, `no`/`n` for rejected eller `pass`/`p` for å beholde kandidaten åpen og gå videre. `quit`/`q` eller Ctrl+C avslutter. Tomt eller ugyldig svar endrer ingenting. En kandidat som får pass vises igjen neste gang du starter kommandoen. Uvurderte og allerede avgjorte kandidater hoppes over. Grupper av samme sak vises én gang; beslutningen gjelder alle gruppemedlemmene.
+
+Hvert yes/no lagres straks og oppdaterer JSON og `latest.md`. Ingen feeds eller API-er kalles. Innboksen er låst mens gjennomgangen pågår; avslutt før innhenting/vurdering i en annen terminal. Alternativ mappe støttes med `--data-dir` eller `ARTICLE_RADAR_DATA_DIR`. Etter et hardt prosessavbrudd gjelder samme `.lock`-gjenoppretting som beskrevet nedenfor.
+
 Standardmappe: `data/article-radar/`, utenfor Eleventys `src/`. Den kan flyttes med `ARTICLE_RADAR_DATA_DIR` eller `--data-dir=PATH`.
 
 | Fil | Innhold |
@@ -92,6 +104,10 @@ Ingen registrerte publisister måtte deaktiveres helt i testen. NRK, VG, TV 2, D
 Legg til et medium ved å registrere rollen `publisher` i kilderegisteret, finne en offisiell feed og legge samme nøkkel i discovery-konfigurasjonen. Kontroller faktisk XML og dekning med `--publisher=... --no-ai`; et HTTP 200-svar alene er ikke tilstrekkelig. Flere feeder kan legges til samme publisist. URL-er fra andre domener enn mediets registrerte domene og underdomener hoppes over.
 
 ## Prompt, rangering og videre justering
+
+Personlige pasienthistorier, ordinære trafikkulykker og løpende værvarsler får lav redaksjonell prioritet. `editorialPriority.js` gir seks poeng trekk i det lokale forhåndssignalet og setter sluttscoretak til henholdsvis 25, 20 og 20. Taket øker aldri en lavere score. Dette er Bastants prioritering, ikke en dom over artikkelens kvalitet. Et eksplisitt systempremiss i metadata (for eksempel refusjonsregler, ulykkesstatistikk eller beredskap) kan oppheve det lokale trekket. Regelen er en enkel tekstheuristikk og kan justeres.
+
+Rangeringen anvender regelen også på lagrede vurderinger uten nye API-kall. `baseScore` bevarer grunnscoren, mens `editorialPriority` forklarer taket i JSON og Markdown. Originale AI-begrunnelser og spørsmål fra tidligere kjøringer er ikke skrevet om. Den oppdaterte prompten gjelder nye vurderinger og forbyr spørsmål rettet mot pasientens private helseopplysninger eller troverdighet, også når saken har et systempremiss.
 
 - `scripts/article-radar/assessment-prompt.md`: redigerbare AI-instrukser, norske begrunnelser, 2–5 spørsmål og kildeforslag.
 - `scripts/article-radar/prefilter.js`: samlede lokale signaler, terskel i `config.js`.

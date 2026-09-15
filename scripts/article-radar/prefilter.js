@@ -1,3 +1,4 @@
+import { editorialPriority } from "./editorialPriority.js";
 // Signals indicate opportunities for verification, never suspected error.
 export const rules = [
   { name: "samfunn", weight: 2, pattern: /politikk|regjering|storting|lov(?:en|er|verk)?\b|regler|offentlig|økonomi|skatt|arbeidsliv|innvandring|kriminal|helse|sykehus|forskning|klima|energi|forsvar|krig|utenriks|statistikk|budsjett|valg|rente|inflasjon|domstol|befolkning/iu },
@@ -12,5 +13,7 @@ export function prefilter(article) {
   const text = [article.title, article.description, article.section, ...(article.categories ?? [])].filter(Boolean).join(" ")
     .replace(/\bTV\s*2\b/giu, "TV");
   const signals = rules.filter((rule) => rule.pattern.test(text));
+  const priority = editorialPriority(article);
+  if (priority) signals.push({ name: priority.reason, weight: -priority.penalty });
   return { score: Math.max(0, Math.min(10, 1 + signals.reduce((sum, rule) => sum + rule.weight, 0))), signals: signals.map(({ name, weight }) => ({ name, weight })) };
 }

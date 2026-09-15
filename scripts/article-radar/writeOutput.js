@@ -4,11 +4,13 @@ import discovery from "./sourceDiscovery.js";
 import { metadataLimitation, defaults } from "./config.js";
 import { candidateGroups, aiAllowed } from "./pipeline.js";
 import { atomicWrite } from "./store.js";
+import { applyEditorialPriority } from "./editorialPriority.js";
 
 export function rankCandidates(inbox) {
   return candidateGroups(inbox).map((group) => {
     const representative = [...group.articles].sort((a, b) => Number(Boolean(b.assessment)) - Number(Boolean(a.assessment)) || b.prefilterScore - a.prefilterScore || a.id.localeCompare(b.id))[0];
     return { ...representative, id: group.id, clusterId: group.articles.length > 1 ? group.id : null,
+      assessment: applyEditorialPriority(representative.assessment, representative),
       publishers: [...new Set(group.articles.map((a) => a.publisher))], articles: group.articles,
       aiEligible: group.articles.some(aiAllowed),
     };
@@ -38,6 +40,7 @@ export function renderMarkdown(candidates, run, limit = defaults.reportLimit) {
     for (const article of candidate.articles) lines.push(`- [${name(article.publisher)} – original](<${safeLink(article.url)}>)`);
     lines.push("", `Lokalt forhåndssignal: ${candidate.prefilterScore}/10 (ikke en AI-score).`);
     if (assessment) {
+      if (assessment.editorialPriority) lines.push("", `**Redaksjonell prioritering:** ${escapeMarkdown(assessment.editorialPriority.reason)} Grunnscore: ${assessment.baseScore}/100; scoretak: ${assessment.editorialPriority.scoreCap}/100.`);
       lines.push("", `Trygghet i kandidatseleksjonen: ${assessment.confidence}.`, "", "**Hvorfor aktuell**", "",
         ...assessment.reasons.map((s) => `- ${escapeMarkdown(s)}`), "", "**Undersøk særlig**", "",
         ...assessment.researchQuestions.map((s, i) => `${i + 1}. ${escapeMarkdown(s)}`), "", "**Mulige primærkilder – ikke kontrollert**", "",

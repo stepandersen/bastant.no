@@ -2,6 +2,7 @@ import discovery from "./sourceDiscovery.js";
 import { defaults } from "./config.js";
 import { clusterArticles } from "./clusterArticles.js";
 import { assessCandidate } from "./assessCandidate.js";
+import { applyEditorialPriority } from "./editorialPriority.js";
 
 export function aiAllowed(article) {
   // VG syndicates E24 items with explicit E24 section credit. Do not route them around the E24 setting.
@@ -32,7 +33,7 @@ export async function assessInbox(inbox, { publisher, maxAiCandidates = defaults
     if (article.prefilterScore < defaults.prefilterThreshold || assessed + failed >= maxAiCandidates) continue;
     for (const entry of pending) entry.attempts = (entry.attempts ?? 0) + 1;
     try {
-      const assessment = await assess(article, settings);
+      const assessment = applyEditorialPriority(await assess(article, settings), article);
       for (const entry of pending) Object.assign(entry, { assessment, status: "assessed", assessmentError: null });
       assessed++; log(`AI: ${assessed + failed}/${maxAiCandidates} – ${assessment.score}/100`);
     } catch (error) {

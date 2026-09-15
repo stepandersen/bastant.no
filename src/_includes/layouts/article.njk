@@ -40,6 +40,17 @@ layout: layouts/base.njk
 
   {% include "components/related-articles.njk" %}
 
+  {% if topics and topics.length %}
+    <nav class="article-topics topic-links" aria-label="Artikkelens emner">
+      <strong>Emner:</strong>
+      <ul>
+        {% for topic in topics %}
+          <li>{% if topic in collections.topicList %}<a href="{{ topic | topicUrl }}">{{ topic }}</a>{% else %}{{ topic }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+
   <footer class="article-footer">
     <p>Finner du en feil eller en kilde vi bør kjenne til?</p>
         <a href="/om/#kontakt">Meld fra om feil</a>

@@ -81,7 +81,17 @@ export async function assessCandidate(article, { apiKey, model, prompt, fetchImp
         });
       } catch { throw new RadarError("ai", "Nettverksfeil eller tidsavbrudd ved AI-kall"); }
       if (!response.ok) {
-        const error = new RadarError("ai", `AI HTTP ${response.status}`);
+        // Interpret known codes without logging the raw body (which may contain account details).
+        let details;
+        try { details = (await response.json()).error; } catch { /* Non-JSON error response. */ }
+        const codes = [details?.code, details?.type];
+        let message = `AI HTTP ${response.status}`;
+        if (response.status === 429) {
+          if (codes.includes("insufficient_quota")) message += " – API-kvoten er brukt opp eller ikke finansiert. Kontroller API-billing, kredittsaldo og bruksgrenser for organisasjonen til nøkkelen.";
+          else if (codes.includes("rate_limit_exceeded")) message += " – Midlertidig rategrense nådd. Vent litt og prøv igjen med --max-ai-candidates=1.";
+          else message += " – Kvoten eller rategrensen er nådd. Kontroller API-billing og limits; serveren oppgav ingen gjenkjent feilkode.";
+        }
+        const error = new RadarError("ai", message);
         error.fatal = [400, 401, 403, 404, 429].includes(response.status);
         throw error;
       }

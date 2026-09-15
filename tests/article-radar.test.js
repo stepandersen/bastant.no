@@ -13,11 +13,29 @@ import { assessInbox, aiAllowed } from "../scripts/article-radar/pipeline.js";
 import { renderMarkdown, rankCandidates, writeOutput } from "../scripts/article-radar/writeOutput.js";
 import { fetchSources } from "../scripts/article-radar/fetchSources.js";
 import { options } from "../scripts/article-radar/index.js";
+import { editorialPriority, applyEditorialPriority } from "../scripts/article-radar/editorialPriority.js";
 
 const now = "2026-09-14T08:00:00.000Z";
 const article = (id, extra = {}) => normalizeArticle({ url: `https://www.nrk.no/${id}`, title: "Nye regler fører til økt skatt for tusen ansatte", description: "Offentlig statistikk viser at skatten har økt med 20 prosent.", published: now, ...extra }, "nrk", { type: "rss", source: "https://www.nrk.no/toppsaker.rss" }, now);
 const assessment = () => ({ confidence: "medium", dimensions: { verifiability: 9, importance: 7, sourceAvailability: 9, contextPotential: 8, factualDensity: 8 }, reasons: ["Temaet egner seg for å undersøke skattereglene."], researchQuestions: ["Hva er kilden til tallet?", "Hva innebærer regelendringen?"], likelyPrimarySources: ["Lovtekst"], limitations: ["Bare metadata er tilgjengelige."] });
 const silent = () => {};
+test("pasienthistorier, trafikkhendelser og værvarsler får lav prioritet, med systemunntak", () => {
+  const cases = [
+    { title: "Må betale 140.000 i måneden for medisin: –Man føler seg liten og ubetydelig", description: "Heidi (39) forteller om sykdommen sin.", cap: 25 },
+    { title: "Fem biler i trafikkulykke på E18 – veien delvis stengt", cap: 20 },
+    { title: "Uværet nærmer seg: Varsler vindkast mot 33 m/s, lyn og høye bølger", cap: 20 },
+  ];
+  for (const item of cases) {
+    assert.ok(prefilter(item).score < 3);
+    const adjusted = applyEditorialPriority({ score: 80 }, item);
+    assert.equal(adjusted.score, item.cap); assert.equal(adjusted.baseScore, 80);
+    assert.deepEqual(applyEditorialPriority(adjusted, item), adjusted);
+    assert.equal(applyEditorialPriority({ score: 10 }, item).score, 10);
+    const ranked = rankCandidates({ articles: [{ ...article("scope", { title: item.title, description: item.description ?? null }), assessment: { score: 80 }, prefilterScore: 5 }] });
+    assert.equal(ranked[0].assessment.score, item.cap);
+  }
+  for (const title of ["Nye regler for medisin: Pasient må betale mer", "Trafikkulykker: Statistikk viser dobling", "Værvarsel: Forskning viser svikt i varslingssystemet"]) assert.equal(editorialPriority({ title }), null);
+});
 async function temporary(t) {
   const directory = await mkdtemp(path.join(tmpdir(), "bastant-radar-test-"));
   t.after(() => rm(directory, { recursive: true, force: true }));
@@ -131,6 +149,21 @@ test("API gir strukturert svar, lokal score, promptversjon og kontrollert retry"
   let rejectedCalls = 0;
   await assert.rejects(assessCandidate(item, { apiKey: "x", prompt: { text: "x" }, fetchImpl: async () => { rejectedCalls++; return new Response("secret-server-body", { status: 401 }); } }), { message: "AI HTTP 401" });
   assert.equal(rejectedCalls, 1);
+});
+
+test("429 skiller kvote fra rategrense uten å logge kontoopplysninger eller retry", async () => {
+  for (const [code, expected] of [["insufficient_quota", /API-kvoten/], ["rate_limit_exceeded", /Midlertidig rategrense/], ["unknown", /ingen gjenkjent feilkode/]]) {
+    let calls = 0;
+    await assert.rejects(assessCandidate(article("a"), {
+      apiKey: "test-key", model: "test-model", prompt: { text: "Instruks" },
+      fetchImpl: async () => { calls++; return Response.json({ error: { code, message: "PRIVATE_ACCOUNT_DETAILS" } }, { status: 429 }); },
+    }), (error) => {
+      assert.match(error.message, expected);
+      assert.ok(!error.message.includes("PRIVATE_ACCOUNT_DETAILS"));
+      assert.equal(error.fatal, true); return true;
+    });
+    assert.equal(calls, 1);
+  }
 });
 
 test("en feedfeil stopper ikke resten; udaterte artikler beholdes uten falsk dato", async () => {

@@ -196,6 +196,8 @@ img { max-width: 100%; height: auto; }
 .sources li { margin-bottom: 1rem; padding-left: .5rem; font: 1rem/1.55 var(--serif); }
 .sources li span { display: block; color: var(--muted); }
 .corrections { background: var(--surface); padding: 1.5rem; border-top-color: var(--accent); }
+.article-topics { max-width: var(--measure); display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; margin-top: 3rem; }
+.article-topics ul { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; list-style: none; margin: 0; padding: 0; }
 .article-footer { max-width: var(--measure); display: flex; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-weight: 750; }
 .article-footer p { margin: 0; }
 .related-articles { max-width: var(--measure); margin-top: 4rem; padding: 1.5rem; background: var(--surface); border-top: .3rem solid var(--accent); }

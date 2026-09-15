@@ -9,6 +9,7 @@
     "article-radar": "node scripts/article-radar/index.js",
     "article-radar:collect": "node scripts/article-radar/index.js --collect-only",
     "article-radar:assess": "node scripts/article-radar/index.js --assess-only",
+    "article-radar:review": "node scripts/article-radar/review.js",
     "build": "eleventy",
     "start": "eleventy --serve"
   },
