@@ -12,7 +12,7 @@ eleventyImport:
   </aside>
   {% if collections.articles.length %}
     <div class="compact-list">
-      {% for article in collections.articles | limit(7) %}
+      {% for article in collections.articles | limit(20) %}
         {% include "components/compact-article.njk" %}
       {% endfor %}
     </div>

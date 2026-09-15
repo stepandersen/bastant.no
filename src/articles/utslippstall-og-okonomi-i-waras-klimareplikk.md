@@ -8,6 +8,7 @@ topics:
   - klima
   - klimapolitikk
   - frp
+  - mdg
 review:
   publisher: nrk
   source: nrk

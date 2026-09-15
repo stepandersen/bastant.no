@@ -23,7 +23,7 @@ layout: layouts/base.njk
 
   {% if review %}
     {% include "components/reviewed-source.njk" %}
-    <p class="reading-note">Denne gjennomgangen er et supplement til originalartikkelen. Vi anbefaler at du leser den først.</p>
+    <p class="reading-note"><strong>Om gjennomgangen:</strong> Vi undersøker et utvalg etterprøvbare påstander i originalartikkelen og supplerer med kilder og relevant kontekst. Noen funn er sentrale for artikkelens hovedpoeng, mens andre er presiseringer eller tilleggsopplysninger.</p>
   {% endif %}
 
   <div class="article-content{% if sources and sources.length %} article-content--with-sources{% endif %}">

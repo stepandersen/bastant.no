@@ -202,7 +202,12 @@ const sourceTypes = {
         { title: "Vær Varsom-plakaten – punkt 2.1–2.2, 3.2 og 4.1–4.4", url: "https://www.presse.no/vaer-varsom-plakaten" },
       ],
     },
-    types: {},
+    types: {
+      utenriks: {
+        name: "Utenriks",
+        description: "Dagens Næringslivs kategori for utenriksnyheter og internasjonale saker.",
+      },
+    },
   },
   aftenposten: {
     roles: ["publisher", "producer"],
@@ -325,6 +330,10 @@ const sourceTypes = {
       ],
     },
     types: {
+      helse: {
+        name: "Helse",
+        description: "TV 2s redaksjonelle kategori for saker om helse, behandling og medisinsk forskning.",
+      },
       nyhet: {
         name: "Nyhet",
         description: "TV 2s ordinære redaksjonelle nyhetsartikler.",

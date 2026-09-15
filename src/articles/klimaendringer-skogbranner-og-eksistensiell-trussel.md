@@ -7,6 +7,7 @@ topics:
   - klima
   - skogbrann
   - frp
+  - mdg
 review:
   publisher: nrk
   source: nrk
